@@ -42,15 +42,19 @@ td {
   padding: 5px;
   cursor: pointer;
 }
-.none {
-  background-color: #ffffff;
-}
-.work {
-  background-color: #7ec284;
+
+.first-day, .second-day {
+  background-color: #92d050;
 }
 .today {
   border: 2px solid #cf1515;
 }
 .weekend {
-  background-color: #7c7c7c;
+  background-color: #bfbfbf;
+}
+.night {
+  background-color: #00b0f0;
+}
+.first-weekend, .second-weekend {
+  background-color: #ffffff;
 }
