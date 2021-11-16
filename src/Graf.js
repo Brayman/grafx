@@ -1,4 +1,6 @@
+import { mapKeys, mapValues } from 'lodash';
 import { useEffect, useState } from 'react';
+import { renderToString } from 'react-dom/server'
 import './App.css';
 const workers = ['user1','user2','user3','user4','user5','user6']
 
@@ -78,12 +80,39 @@ function returnDay(last) {
 
 
 
-
+function Row({month}) {
+    const [contextMenu, setContextMenu] = useState({open: false});
+    const date = new Date()
+    const numberDay = date.getDate()
+    const drawGraf = (element, i) => {
+        if (i+1 === numberDay) {
+            return <td key={`item${i}`} className={`${element.type} today`}>{element.hours}</td>
+        }
+        return <td key={`item${i}`} className={element.type}>{element.hours}</td>
+    }
+    const elements = []
+    for (const key in month) {
+        if (key !== 'date') {
+            elements.push(<tr>
+                <td>{key}</td>
+                {
+                    month[key].days.map(drawGraf)
+                }
+                <td>{month[key].hours} </td>
+            </tr> )
+        }
+        
+        
+    }
+    return elements
+} 
+  
 
 
 function Graf(params) {
-    const [month, setMonth] = useState(null)
     const date = new Date()
+    const [month, setMonth] = useState(new Month(workers,date,'night'))
+    
     const numberDay = date.getDate()
     useEffect(()=> {
             setMonth( new Month(workers,date,'night') )   
@@ -96,16 +125,13 @@ function Graf(params) {
         }
             return <td key={`day${i}`} className={`${ 6 === day || 0 === day ? 'weekend' : ''}`}>{i+1}</td>
         }
-    const drawGraf = (element, i) => {
-        if (i+1 === numberDay) {
-            return <td key={`item${i}`} className={`${element.type} today`}>{element.hours}</td>
-        }
-        return <td key={`item${i}`} className={element.type}>{element.hours}</td>
-    }
-    if (month == null) {
-        return <h1>Loading...</h1>
-    } else {
-        return <table>
+   
+
+
+    
+
+    
+    return <table>
             <tbody>
             <tr>
                     <td>{new Date(month.date).toLocaleDateString('ru-ru', {month: 'long'})}</td>
@@ -113,51 +139,12 @@ function Graf(params) {
                         month.user1.days.map(drawday)
                     }
                 </tr>
-                <tr>
-                    <td>user1</td>
-                    {
-                        month.user1.days.map(drawGraf)
-                    }
-                    <td>{month.user1.hours}</td>
-                </tr>
-                <tr>
-                    <td>user2</td>
-                    {
-                        month.user2.days.map(drawGraf)
-                    }
-                    <td>{month.user2.hours} </td>
-                </tr>
-                <tr>
-                    <td>user3</td>
-                    {
-                        month.user3.days.map(drawGraf)
-                    }
-                    <td>{month.user3.hours} </td>
-                </tr>
-                <tr>
-                    <td>user4</td>
-                    {
-                        month.user4.days.map(drawGraf)
-                    }
-                    <td>{month.user4.hours} </td>
-                </tr>
-                <tr>
-                    <td>user5</td>
-                    {
-                        month.user5.days.map(drawGraf)
-                    }
-                    <td>{month.user5.hours} </td>
-                </tr>
-                <tr>
-                    <td>user6</td>
-                    {
-                        month.user6.days.map(drawGraf)
-                    }
-                    <td>{month.user6.hours} </td>
-                </tr>
+                
+                <Row month={month}/>
+               
                 
             </tbody>
+            
         </table>
-    }
 }
 export default Graf

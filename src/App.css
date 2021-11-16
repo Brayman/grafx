@@ -43,7 +43,7 @@ td {
   cursor: pointer;
 }
 
-.first-day, .second-day {
+.first-day, .second-day, .day {
   background-color: #92d050;
 }
 .today {
@@ -57,4 +57,39 @@ td {
 }
 .first-weekend, .second-weekend {
   background-color: #ffffff;
+}
+
+.table {
+  display: flex;
+  justify-content: space-evenly;
+  align-content: flex-start;
+  align-items: center;
+}
+.col {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  flex-grow: 1;
+}
+.row {
+  display: flex;
+  border: 1px solid #000;
+  padding: 4px;
+  margin: 1px;
+  justify-content: center;
+}
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+table {
+  display: flex;
+  align-content: center;
+  flex-direction: column;
+  flex-grow: 1;
+}
+footer {
+  display: flex;
+  justify-content: space-evenly;
 }
