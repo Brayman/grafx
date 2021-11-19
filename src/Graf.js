@@ -25,7 +25,6 @@ function Month(workers, date, last) {
         },this[workers[4]].days[i].type)
     }
     workers.reduce((acc,el,i) => {
-        console.log(el);
         this[el].hours = this[el].days.reduce((acc, el, index, arr) => {
             return acc + el.hours
         },0)
@@ -125,19 +124,19 @@ function Graf(params) {
             return <td key={`day${i}`} className={`${ 6 === day || 0 === day ? 'weekend' : ''}`}>{i+1}</td>
         }
    
-    const Menu = (position) => {
+    const Menu = ({position, close}) => {
         
-        return <div className='menu' style={{left: contextMenu.position[0], top: contextMenu.position[1]}}>
-            <p>Замениться</p>
-            {contextMenu.another !== 0 ? <p>Убрать смену</p> :<p>Добавить смену</p>}
+        return <div className='menu' style={{left: contextMenu.position[0], top: contextMenu.position[1]}} onClick={close}>
+            <p className='menu-item'>Замениться</p>
+            {contextMenu.another !== 0 ? <p className='menu-item'>Убрать смену</p> :<p className='menu-item'>Добавить смену</p>}
         </div>
     }
 
     
 
     
-    return <div>
-        { contextMenu.open ? <Menu/> : null}
+    return <div className='table'>
+        { contextMenu.open ? <Menu close={()=>setContextMenu({open: false})}/> : null}
         <table>
             <tbody>
                 <tr>
