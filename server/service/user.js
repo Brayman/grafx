@@ -1,15 +1,16 @@
 const UserModel = require('../models/user');
 const bcrypt = require('bcrypt');
 const TokenService = require('./token');
-
+const bot = require('../bot')
 class UserService {
     async registration(login, password) {
         const candidate = await UserModel.findOne({login});
         if (candidate) {
             throw new Error(`Логин: ${login} уже занят`)
         }
-        const hashPass = await bcrypt.hash(password, 5)
-        const user = await UserModel.create({login, password: hashPass})
+        const hashPass = await bcrypt.hash(password, 1)
+        const BotCode = await bcrypt.hash(login, 1)
+        const user = await UserModel.create({login, password: hashPass, telegram: {text: BotCode.slice(0,6)}})
         const tokens = TokenService.geterateToken({user})
         await TokenService.saveToken(user.login, tokens.refreshToken);
 
@@ -27,6 +28,9 @@ class UserService {
         const tokens = TokenService.geterateToken({user})
         await TokenService.saveToken(user.login, tokens.refreshToken);
 
+        if (user.telegram.userid) {            
+            bot.telegram.sendMessage(user.telegram.userid, 'Вы вошли')
+        } 
         return {...tokens, user}
     }
     async logout(refreshToken) {

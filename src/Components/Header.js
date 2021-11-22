@@ -8,7 +8,7 @@ function Header(params) {
             headers: {
                 'Content-Type': 'application/json'
               },
-              body: JSON.stringify({login: 'admin', password: '123456'})
+              body: JSON.stringify({login: 'Brayman', password: '8292913'})
             })
             const ans = await res.json()
             localStorage.setItem('tok',ans.accessToken )
