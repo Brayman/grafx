@@ -18,9 +18,9 @@ loginScene.on('text', async ctx => {
   
   const user = await UserModel.findOne({login})
     console.log(user.telegram.text == key);
-  if (user.telegram.text == key) {
+  if (user.telegram.code == key) {
 
-    const auth = await UserModel.findByIdAndUpdate(user._id,{telegram: {userid: ctx.chat.id, text: ctx.chat.username}})
+    const auth = await UserModel.findByIdAndUpdate(user._id,{telegram: {userid: ctx.chat.id, username: ctx.chat.username}})
     loginScene.leave(ctx => ctx.reply('Успех!'))
     return ctx.scene.leave()
   }

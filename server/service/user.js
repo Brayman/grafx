@@ -10,7 +10,7 @@ class UserService {
         }
         const hashPass = await bcrypt.hash(password, 1)
         const BotCode = await bcrypt.hash(login, 1)
-        const user = await UserModel.create({login, password: hashPass, telegram: {text: BotCode.slice(0,6)}})
+        const user = await UserModel.create({login, password: hashPass, telegram: {code: BotCode.slice(0,6)}})
         const tokens = TokenService.geterateToken({user})
         await TokenService.saveToken(user.login, tokens.refreshToken);
 

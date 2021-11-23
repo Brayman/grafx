@@ -5,3 +5,9 @@ button {
     border-style: none;
     cursor: pointer;
 }
+input {
+    border: none;
+    outline: none;
+    background-color: #fff !important;
+    width: 100%;
+}
