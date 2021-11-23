@@ -15,6 +15,9 @@ class UserController {
         try {
             const {login, password} = req.body;
             const userData = await UserService.login(login, password);
+            if (userData.error) {
+                return res.sendStatus(404);
+            }
             res.cookie('refTok', userData.refreshToken, {maxAge: 30*24*60*60*1000, httpOnly: true})
             return res.json(userData)
         } catch (error) {

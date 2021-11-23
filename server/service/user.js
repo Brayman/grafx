@@ -19,18 +19,22 @@ class UserService {
     async login(login, password) {
         const user = await UserModel.findOne({login});
         if (!user) {
-            console.log('ошибка аунтификации');
+            console.log(`ошибка аунтификации. Нет пользователя ${login}`);
+            return {error: 'log'}
         }
         const isPassEquals = await bcrypt.compare(password, user.password);
         if (!isPassEquals) {
-            console.log('ошибка аунтификации');
+            console.log(`ошибка аунтификации. ${login} ввёл неверный пароль`);
+            return {error: 'pass'}
         }
         const tokens = TokenService.geterateToken({user})
         await TokenService.saveToken(user.login, tokens.refreshToken);
 
-        if (user.telegram.userid) {            
+        if (user.telegram.userid) {  
+            console.log('отправили сообщение в telegram');          
             bot.telegram.sendMessage(user.telegram.userid, 'Вы вошли')
         } 
+        console.log(`${login} вошёл`);
         return {...tokens, user}
     }
     async logout(refreshToken) {

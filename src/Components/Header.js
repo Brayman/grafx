@@ -1,6 +1,10 @@
-import  '../css/header-footer.css'
+import  '../css/header-footer.css';
+import { useHistory } from "react-router-dom";
+
 function Header(params) {
+    let history = useHistory();
     async function req(params, url) {
+
         if (params == 'post') {
             const res = await fetch(`http://localhost:5000/api/${url}`, {
             method: 'POST',
@@ -30,7 +34,7 @@ function Header(params) {
         <header>
             {date.toLocaleDateString('ru-ru', { day: 'numeric', month: 'long', year: 'numeric'})}
             <button onClick={()=>req('post','registration')}>Зарегистрироваться</button>
-            <button onClick={()=>req('post','login')}>Войти</button>
+            <button onClick={()=>history.push('/login')}>Войти</button>
             <button onClick={()=>req()}>GET</button>
         </header>
     )

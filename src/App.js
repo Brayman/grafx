@@ -1,9 +1,11 @@
 import React from 'react';
 import './App.css';
 import '../src/css/basic.css';
+
 import Graf from './Graf';
 import pack from '../package.json'
 import { Header } from './Components';
+import LoginWindow from './containers/LoginWindow';
 import {
     Switch,
     Route,
@@ -15,8 +17,15 @@ function App(params) {
         <div className='app'>
             <Header/>
             <Switch>
-                <Route path='/'>
+                
+                <Route exact path='/'>
                     <Graf/>
+                </Route>
+                <Route exact path='/login'>
+                    <LoginWindow/>
+                </Route>
+                <Route exact path='/signup'>
+                    <LoginWindow/>
                 </Route>
             </Switch>
             <footer>
