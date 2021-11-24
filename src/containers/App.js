@@ -4,7 +4,7 @@ import '../css/basic.css';
 
 import Graf from '../Graf';
 import pack from '../../package.json'
-import { Header, Profile } from '../components';
+import { Header, Profile } from '../component';
 import LoginWindow from './LoginWindow';
 import {
     Switch,

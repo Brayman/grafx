@@ -1,6 +1,6 @@
 import { useLocation } from "react-router";
 import { useHistory } from "react-router-dom";
-import { LogIn, SignUp } from "../components";
+import { LogIn, SignUp } from "../component";
 
 const { useState } = require("react");
 
