@@ -1,10 +1,11 @@
 import React from 'react';
 import '../App.css';
 import '../css/basic.css';
+import Creator from './Creator';
 
 import Graf from '../Graf';
 import pack from '../../package.json'
-import { Header, Profile } from '../components';
+import { Header, Profile } from '../component';
 import LoginWindow from './LoginWindow';
 import {
     Switch,
@@ -26,6 +27,9 @@ function App({params}) {
                 </Route>
                 <Route exact path='/profile'>
                     <Profile user={user}/>
+                </Route>
+                <Route exact path='/creator'>
+                    <Creator/>
                 </Route>
                 <Route exact path='/login'>
                     <LoginWindow/>
