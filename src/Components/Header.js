@@ -10,10 +10,6 @@ function Header(params) {
     const dispatch = useDispatch()
     let history = useHistory();
     async function req(params, url) {
-
-        
-            
-            
             try {
                 const res = await fetch('http://localhost:5000/api/refresh',{
                 
@@ -33,8 +29,10 @@ function Header(params) {
     },[]);
     return (
         <header>
-            {date.toLocaleDateString('ru-ru', { day: 'numeric', month: 'long', year: 'numeric'})}
-            <button onClick={()=>req('post','registration')}>Зарегистрироваться</button>
+            <div onClick={()=>history.push('/')}>
+                {date.toLocaleDateString('ru-ru', { day: 'numeric', month: 'long', year: 'numeric'})}
+            </div>
+            
             <button onClick={()=>history.push('/login')}>Войти</button>
             <button onClick={()=>history.push('/')}>{user.login}</button>
         </header>

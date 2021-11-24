@@ -1,6 +1,6 @@
 import { useLocation } from "react-router";
 import { useHistory } from "react-router-dom";
-import { LogIn } from "../components";
+import { LogIn, SignUp } from "../components";
 
 const { useState } = require("react");
 
@@ -12,10 +12,10 @@ function LoginWindow(params) {
     return (
         <div className='window'>
             <header className='tabs'>
-                <div className={`${lok.pathname === '/login' ? 'active' : ''} tab`} onClick={() => history.push('./login')}>Log in</div>
-                <div className={`${lok.pathname === '/signup' ? 'active' : ''} tab`} onClick={() => history.push('./signup')}>Sign up</div>
+                <div className={`${lok.pathname === '/login' ? 'active' : ''} tab`} onClick={() => history.push('./login')}>Вход</div>
+                <div className={`${lok.pathname === '/signup' ? 'active' : ''} tab`} onClick={() => history.push('./signup')}>Регистрация</div>
             </header>
-            {lok.pathname === '/login' ? <LogIn/> : <p>пока пусто</p>}
+            {lok.pathname === '/login' ? <LogIn/> : <SignUp/>}
         </div>
     )
     

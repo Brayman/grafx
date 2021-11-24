@@ -1,23 +1,19 @@
 import { useState } from "react";
 import { MdPerson, MdLockOutline } from "react-icons/md";
-import { useDispatch } from "react-redux";
-import { login } from "../redux/actions"
-function Login(params) {
+function SignUp() {
     const [form,setForm] = useState({})
-    const dispatch = useDispatch()
-    async function loginRes(form) {
+    async function regRes(form) {
         
-        const res = await fetch(`http://localhost:5000/api/login`, {
+        const res = await fetch(`http://localhost:5000/api/registration`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
               },
-              credentials: 'include',
               body: JSON.stringify(form)
             })
             const ans = await res.json()
             localStorage.setItem('tok',ans.accessToken )
-            dispatch(login(ans));
+            console.log(ans);
     }
     function inputs(e) {
         switch (e.name) {
@@ -27,25 +23,37 @@ function Login(params) {
             case 'password':
                 setForm({...form, password: e.value})
                 break;
-        
+            case 'first-name':
+                setForm({...form, first_name: e.value})
+                break;
+            case 'second-name':
+                setForm({...form, second_name: e.value})
+                break;
             default:
                 break;
         }
     }
     return (
-        <div className='login-page'>
+        <div className='sign-page'>
             <label>
                 <MdPerson/>
                 <input type='text' name='login' onChange={e => inputs(e.target)}/>
             </label>
             <label>
+                <input type='text' name='first-name' onChange={e => inputs(e.target)}/>
+            </label>
+            <label>
+                <input type='text' name='second-name' onChange={e => inputs(e.target)}/>
+            </label>
+            <label>
                 <MdLockOutline/>
                 <input type='password' name='password' onChange={e => inputs(e.target)}/>
             </label>
-            <button onClick={()=>loginRes(form)}>
-                Войти
+            <button onClick={()=>regRes(form)}>
+                Регистрация
             </button>
         </div>
     )
 }
-export default Login;
+
+export default SignUp;
