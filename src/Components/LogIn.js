@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { MdPerson, MdLockOutline } from "react-icons/md";
+import { useDispatch } from "react-redux";
+import { login } from "../redux/actions"
 function Login(params) {
     const [form,setForm] = useState({})
+    const dispatch = useDispatch()
     async function loginRes(form) {
         
         const res = await fetch(`http://localhost:5000/api/login`, {
@@ -9,11 +12,12 @@ function Login(params) {
             headers: {
                 'Content-Type': 'application/json'
               },
+              credentials: 'include',
               body: JSON.stringify(form)
             })
             const ans = await res.json()
             localStorage.setItem('tok',ans.accessToken )
-            console.log(ans);
+            dispatch(login(ans));
     }
     function inputs(e) {
         switch (e.name) {

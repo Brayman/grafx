@@ -12,18 +12,20 @@ class UserController {
         }
     }
     async login(req, res, next) {
+
         try {
             const {login, password} = req.body;
             const userData = await UserService.login(login, password);
             if (userData.error) {
                 return res.sendStatus(404);
             }
-            res.cookie('refTok', userData.refreshToken, {maxAge: 30*24*60*60*1000, httpOnly: true})
+            res.cookie('refreshToken', userData.refreshToken, {maxAge: 30*24*60*60*1000, httpOnly: true})
             return res.json(userData)
         } catch (error) {
-            
+            console.error(error);
         }
     }
+    
     async logout(req, res, next) {
         try {
             const {refreshToken} = req.cookies;
@@ -38,10 +40,11 @@ class UserController {
         try {
             const {refreshToken} = req.cookies;
             const userData = await UserService.refresh(refreshToken);
-            res.cookie('refTok', userData.refreshToken, {maxAge: 30*24*60*60*1000, httpOnly: true})
+            res.cookie('refreshToken', userData.refreshToken, {maxAge: 30*24*60*60*1000, httpOnly: true})
             return res.json(userData)
         } catch (error) {
-            
+            console.error(error);
+            return res.sendStatus(400)
         }
     }
     async getUser(req, res, next) {

@@ -11,7 +11,7 @@ class UserService {
         const hashPass = await bcrypt.hash(password, 1)
         const BotCode = await bcrypt.hash(login, 1)
         const user = await UserModel.create({login, password: hashPass, telegram: {text: BotCode.slice(0,6)}})
-        const tokens = TokenService.geterateToken({user})
+        const tokens = TokenService.geterateToken({user: user.login})
         await TokenService.saveToken(user.login, tokens.refreshToken);
 
         return {...tokens, user}
@@ -27,7 +27,7 @@ class UserService {
             console.log(`ошибка аунтификации. ${login} ввёл неверный пароль`);
             return {error: 'pass'}
         }
-        const tokens = TokenService.geterateToken({user})
+        const tokens = TokenService.geterateToken({user: user.login})
         await TokenService.saveToken(user.login, tokens.refreshToken);
 
         if (user.telegram.userid) {  
@@ -43,15 +43,16 @@ class UserService {
     }
     async refresh(refreshToken) {
         if (!refreshToken) {
-            console.log('токена нет');
+            console.error('токена нет');
+            throw new Error('токена нет')
         }
         const userData = await TokenService.valRefreshTok(refreshToken);
         const dbToken = await TokenService.findToken(refreshToken);
         if (!userData || !dbToken) {
             console.log('Не авторизован');
         }
-        const user = await UserModel.findById(userData._id)
-        const tokens = TokenService.geterateToken({user})
+        const user = await UserModel.findById(dbToken._id)
+        const tokens = TokenService.geterateToken({user: user.login})
         await TokenService.saveToken(user.login, tokens.refreshToken);
         return {...tokens, user}
     }

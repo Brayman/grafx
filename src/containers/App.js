@@ -1,18 +1,21 @@
 import React from 'react';
-import './App.css';
-import '../src/css/basic.css';
+import '../App.css';
+import '../css/basic.css';
 
-import Graf from './Graf';
-import pack from '../package.json'
-import { Header } from './Components';
-import LoginWindow from './containers/LoginWindow';
+import Graf from '../Graf';
+import pack from '../../package.json'
+import { Header, Profile } from '../components';
+import LoginWindow from './LoginWindow';
 import {
     Switch,
     Route,
     Link
   } from "react-router-dom";
+import { useSelector } from 'react-redux';
+  
 
-function App(params) {
+function App({params}) {
+    const user = useSelector((state) => state.user);
     return (
         <div className='app'>
             <Header/>
@@ -20,6 +23,9 @@ function App(params) {
                 
                 <Route exact path='/'>
                     <Graf/>
+                </Route>
+                <Route exact path='/profile'>
+                    <Profile user={user}/>
                 </Route>
                 <Route exact path='/login'>
                     <LoginWindow/>

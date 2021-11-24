@@ -18,7 +18,7 @@ const uri = process.env.MONGODB_URI;
 const app = express();
 app.use(express.json({ extended: true }))
 app.use(cookieParser());
-app.use(cors());
+app.use(cors({origin: ['http://localhost:3000', 'http://localhost:8080'],credentials: true}));
 app.use('/api', router);
 
 const PORT = process.env.PORT || 5000;

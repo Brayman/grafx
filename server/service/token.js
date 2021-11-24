@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken')
 const UserModel = require('../models/user')
-const SECRET = ['not-top-secret','secret-top-not']
+const SECRET = ['net','seot']
 
 class TokenService {
     geterateToken(payload) {
@@ -32,10 +32,10 @@ class TokenService {
     async saveToken(login, refreshToken) {
         const tokenData = await UserModel.findOne({login})
         if (tokenData) {
-            tokenData.token = refreshToken;
-            return tokenData.save()
+            const token = await UserModel.findOneAndUpdate(login, {token: {refreshToken}})
+            return token;
         } else {
-            const token = await UserModel.findOneAndUpdate(login, {token: refreshToken})
+            const token = await UserModel.findOneAndUpdate(login, {token: {refreshToken}})
             return token;
         }
     }
@@ -43,7 +43,7 @@ class TokenService {
         const tokenData = await UserModel.findOneAndUpdate(refreshToken, {token: null})
     }
     async findToken(refreshToken) {
-        const tokenData = await UserModel.findOne(refreshToken);
+        const tokenData = await UserModel.findOne({refreshToken});
         return tokenData;
     }
     

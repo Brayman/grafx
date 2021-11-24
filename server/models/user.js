@@ -7,7 +7,10 @@ const UserSchema = new Schema({
         userid: Number,
         text: String
     },
-    token: String
+    token: {
+        accessToken: String,
+        refreshToken: String
+    }
 })
 
 module.exports = model('User', UserSchema);
