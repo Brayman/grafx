@@ -1,6 +1,4 @@
-import { mapKeys, mapValues } from 'lodash';
 import { useEffect, useState } from 'react';
-import { renderToString } from 'react-dom/server'
 import './App.css';
 const workers = ['user1','user2','user3','user4','user5','user6']
 
@@ -25,7 +23,6 @@ function Month(workers, date, last) {
         },this[workers[4]].days[i].type)
     }
     workers.reduce((acc,el,i) => {
-        console.log(el);
         this[el].hours = this[el].days.reduce((acc, el, index, arr) => {
             return acc + el.hours
         },0)

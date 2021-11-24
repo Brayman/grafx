@@ -34,7 +34,7 @@ function Header(params) {
             </div>
             
             <button onClick={()=>history.push('/login')}>Войти</button>
-            <button onClick={()=>history.push('/')}>{user.login}</button>
+            <button onClick={()=>history.push('/profile')}>{user.login}</button>
         </header>
     )
 }
