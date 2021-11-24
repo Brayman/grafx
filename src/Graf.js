@@ -16,10 +16,8 @@ function Month(workers, date, last) {
     for (let i = 0; i < day; i++) {
         workers.reduce((acc,el,i) => {
             const day = returnDay(acc)
-            
             this[el].days.push(day);
             return day.type
-
         },this[workers[4]].days[i].type)
     }
     workers.reduce((acc,el,i) => {
@@ -31,7 +29,6 @@ function Month(workers, date, last) {
     
 
 }
-
 function returnDay(last) {
     switch (last) {
         case 1:
@@ -122,26 +119,14 @@ function Graf(params) {
         }
             return <td key={`day${i}`} className={`${ 6 === day || 0 === day ? 'weekend' : ''}`}>{i+1}</td>
         }
-   
-
-
-    
-
-    
     return <table>
             <tbody>
             <tr>
-                    <td>{new Date(month.date).toLocaleDateString('ru-ru', {month: 'long'})}</td>
-                    {
-                        month.user1.days.map(drawday)
-                    }
-                </tr>
-                
-                <Row month={month}/>
-               
-                
+                <td>{new Date(month.date).toLocaleDateString('ru-ru', {month: 'long'})}</td>
+                {month.user1.days.map(drawday)}
+            </tr>
+            <Row month={month}/>
             </tbody>
-            
-        </table>
+    </table>
 }
 export default Graf
