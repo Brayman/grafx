@@ -67,7 +67,11 @@ function returnDay(last) {
                     hours: 11
                 }
         default:
-            break;
+            return {
+                type: 'empty',
+                hours: 0
+            }
+            
     }
 }
 
@@ -80,7 +84,15 @@ function Row({month}) {
     const numberDay = date.getDate()
     const drawGraf = (element, i) => {
         if (i+1 === numberDay) {
-            return <td key={`item${i}`} className={`${element.type} today`}>{element.hours}</td>
+            return (
+                <td key={`item${i}`}
+                    className={`${element.type} today`}
+                    
+                >
+                        {element.hours}
+                </td>
+            )
+                
         }
         return <td key={`item${i}`} className={element.type}>{element.hours}</td>
     }
@@ -103,19 +115,25 @@ function Row({month}) {
   
 
 
-function Graf(params) {
+function Graf({userDate, lastday}) {
     const date = new Date()
-    const [month, setMonth] = useState(new Month(workers,date,'night'))
+    const [month, setMonth] = useState(new Month(workers,userDate,'night'))
     
     const numberDay = date.getDate()
     useEffect(()=> {
-            setMonth( new Month(workers,date,'night') )   
+            setMonth( new Month(workers,userDate,lastday) )   
         },[])
     
     const drawday = (element, i) => {
         const day = new Date(date.getFullYear(),date.getMonth(),i+1).getDay()
         if (i+1 === numberDay) {
-            return <td key={`day${i}`} className={`today ${6 === day || 0 === day ? 'weekend' : ''}`}>{i+1}</td>
+            return (
+                <td key={`day${i}`}
+                    className={`today ${6 === day || 0 === day ? 'weekend' : ''}`}
+                >
+                    {i+1}
+                </td>
+                )
         }
             return <td key={`day${i}`} className={`${ 6 === day || 0 === day ? 'weekend' : ''}`}>{i+1}</td>
         }
