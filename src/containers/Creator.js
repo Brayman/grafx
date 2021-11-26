@@ -1,8 +1,9 @@
 import { useState } from "react";
-
+import Editor from "../component/GrafEditor";
 const worke = ['user1','user2','user3','user4','user5','user6']
 function Creator(params) {
     const [workers, setWorkers] = useState([])
+    const data = new Date();
     return (
         <div>
             <div>
@@ -22,6 +23,7 @@ function Creator(params) {
                 <button>Ночь</button>
                 <button>Отпуск</button>
             </div>
+            <Editor team={worke} date={data}/>
         </div>
     )
 }
