@@ -2,6 +2,8 @@ import { useState } from "react";
 import { BiChevronDown } from "react-icons/bi";
 import '../css/creator.css';
 import Graf from "../Graf";
+
+import Editor from "../component/GrafEditor";
 const worke = ['user1','user2','user3','user4','user5','user6']
 function Creator(params) {
     const month = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь']
@@ -52,7 +54,7 @@ function Creator(params) {
                 <button className='holiday'>Отпуск</button>
             </div>
             <section>
-                <Graf userDate={new Date(selectDate.year,selectDate.month,1)}/>
+                <Editor team={worke} date={data}/>
             </section>
             
         </div>
