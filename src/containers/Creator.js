@@ -28,8 +28,15 @@ function Creator(params) {
                     hours: 10
                 }
             case 'holiday':
-                
-                break;
+                return {
+                    type: 'holiday',
+                    hours: null
+                }
+            case 'empty':
+                return {
+                    type: 'empty',
+                    hours: null
+                }
             default:
                 break;
         }
@@ -67,10 +74,26 @@ function Creator(params) {
                 <button>Выбрать</button>
             </div> */}
             <div>
-                <button className={'work-day' === selectDay ? 'active work-day' : 'work-day'} onClick={(e) => setSelectDay(e.target.className)}>
-                    День</button>
-                <button className={'night' === selectDay ? 'active night' : 'night'} onClick={(e) => setSelectDay(e.target.className)}>Ночь</button>
-                <button className='holiday'>Отпуск</button>
+                <button className={'work-day' === selectDay ? 'active work-day' : 'work-day'}
+                        onClick={(e) => setSelectDay(e.target.className)}
+                >
+                    День
+                </button>
+                <button className={'night' === selectDay ? 'active night' : 'night'}
+                        onClick={(e) => setSelectDay(e.target.className)}
+                >
+                    Ночь
+                </button>
+                <button className={'empty' === selectDay ? 'active empty' : 'empty'}
+                        onClick={(e) => setSelectDay(e.target.className)}
+                >
+                    Выходной
+                </button>
+                <button className={'holiday' === selectDay ? 'active holiday' : 'holiday'}
+                        onClick={(e) => setSelectDay(e.target.className)}
+                >
+                    Отпуск
+                </button>
             </div>
             {
                 newMonth ? <section  className='graf'>

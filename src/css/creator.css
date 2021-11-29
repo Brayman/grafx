@@ -34,10 +34,17 @@ button.night {
     border: solid 1px #000;
     border-radius: 3px;
 }
+button.empty {
+    border: solid 1px #000;
+    border-radius: 3px;
+}
 button.holiday {
     background-color: #e436b8;
     border: solid 1px #000;
     border-radius: 3px;
+}
+.holiday {
+    background-color: #e436b8;
 }
 .graf {
     overflow-x: scroll;

@@ -9,7 +9,7 @@ function Month(workers, time, last) {
         }
         return day.type
     },last)
-    const day = new Date(date.getFullYear(),date.getMonth()+1,0).getDate()
+    const day = new Date(date.getFullYear(),date.getMonth()+1,0).getDate()-1
     for (let i = 0; i < day; i++) {
         workers.reduce((acc,el,i) => {
             const day = returnDay(acc)
@@ -66,7 +66,7 @@ function returnDay(last) {
         default:
             return {
                 type: 'empty',
-                hours: 0
+                hours: null
             }
     }
 }
