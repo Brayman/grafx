@@ -28,12 +28,7 @@ button.work-day {
     border: solid 1px #000;
     border-radius: 3px;
 }
-button.active.work-day {
-    background-color: #92d050;
-    border: solid 1px #66b1e7f7;
-    border-radius: 3px;
-    box-shadow: 0px 0px 2px 2px #66b1e7f7;
-}
+
 button.night {
     background-color: #00b0f0;
     border: solid 1px #000;
@@ -43,4 +38,11 @@ button.holiday {
     background-color: #e436b8;
     border: solid 1px #000;
     border-radius: 3px;
+}
+.graf {
+    overflow-x: scroll;
+}
+button.active {
+    border: solid 1px #66b1e7f7;
+    box-shadow: 0px 0px 2px 2px #66b1e7f7;
 }

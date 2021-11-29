@@ -14,22 +14,41 @@ function Creator(params) {
         year: date.getFullYear()
     })
     const [selectDay, setSelectDay] = useState()
-    
+    const [newMonth, createMonth] = useState()
+    const dayClick = (activeItem) => {
+        switch (activeItem) {
+            case 'work-day':
+                return {
+                    type: 'first-day',
+                    hours: 11
+                }
+            case 'night':
+                return {
+                    type: 'night',
+                    hours: 10
+                }
+            case 'holiday':
+                
+                break;
+            default:
+                break;
+        }
+    }
+
+
     return (
         <div>
 
             <section>
                 <div className='create-options-panel'>
-                    <select className='month-input' onChange={(e)=>console.log(e.target)}>
+                    <select className='month-input' value={selectDate.month} onChange={(e)=>setSelectDate({...selectDate,month: e.target.value})}>
                         {month.map((item, i, arr) => {
-                            if (selectDate == i) {
-                                return <option selected>{item}</option>
-                            }
-                            return <option key={i} >{item}</option>
+                            
+                            return <option key={i} value={i} >{item}</option>
                         })}
                     </select>
-                    <input type='number' className='year-input' placeholder='Год'/>
-                    <button>Создать</button>
+                    <input type='number' className='year-input' placeholder='Год' defaultValue={selectDate.year} onChange={(e)=>setSelectDate({...selectDate,year: e.target.value})}/>
+                    <button onClick={() => createMonth(new Date(selectDate.year, selectDate.month, 1).getTime())} >Создать</button>
                 </div>
                 <div className='more-panel'>
                     <BiChevronDown/> дополнительные параметры    
@@ -48,14 +67,17 @@ function Creator(params) {
                 <button>Выбрать</button>
             </div> */}
             <div>
-                <button className={'work-day' === selectDay ? 'active work-day' : 'work-day'} onClick={() => setSelectDay('work-day')}>
+                <button className={'work-day' === selectDay ? 'active work-day' : 'work-day'} onClick={(e) => setSelectDay(e.target.className)}>
                     День</button>
-                <button className='night'>Ночь</button>
+                <button className={'night' === selectDay ? 'active night' : 'night'} onClick={(e) => setSelectDay(e.target.className)}>Ночь</button>
                 <button className='holiday'>Отпуск</button>
             </div>
-            <section>
-                <Editor team={worke} date={data}/>
-            </section>
+            {
+                newMonth ? <section  className='graf'>
+                <Editor team={worke} date={newMonth} dayClick={() => dayClick(selectDay)}/>
+            </section> : null
+            }
+            
             
         </div>
     )
