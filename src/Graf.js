@@ -1,6 +1,5 @@
-import { mapKeys, mapValues } from 'lodash';
 import { useEffect, useState } from 'react';
-import { renderToString } from 'react-dom/server'
+import Menu from './ContextMenu';
 import './App.css';
 const workers = ['user1','user2','user3','user4','user5','user6']
 
@@ -124,19 +123,13 @@ function Graf(params) {
             return <td key={`day${i}`} className={`${ 6 === day || 0 === day ? 'weekend' : ''}`}>{i+1}</td>
         }
    
-    const Menu = ({position, close}) => {
-        
-        return <div className='menu' style={{left: contextMenu.position[0], top: contextMenu.position[1]}} onClick={close}>
-            <p className='menu-item'>Замениться</p>
-            {contextMenu.another !== 0 ? <p className='menu-item'>Убрать смену</p> :<p className='menu-item'>Добавить смену</p>}
-        </div>
-    }
+    
 
     
 
     
     return <div className='table'>
-        { contextMenu.open ? <Menu close={()=>setContextMenu({open: false})}/> : null}
+        { contextMenu.open ? <Menu position={contextMenu.position} item={contextMenu.another} close={()=>setContextMenu({open: false})}/> : null}
         <table>
             <tbody>
                 <tr>
