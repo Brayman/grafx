@@ -1,5 +1,6 @@
 const Router = require('express');
 const UserController = require('../controllers/user');
+const ScheduleController = require('../controllers/schedule')
 const router = new Router();
 
 
@@ -24,6 +25,7 @@ const midl = function (req, res, next) {
   }
 
 router.post('/registration', UserController.registration);
+router.post('/schedule', ScheduleController.set_schedule);
 router.post('/login', UserController.login);
 router.post('/logout', UserController.logout);
 router.get('/refresh', UserController.refresh);

@@ -26,6 +26,45 @@ function Month(workers, time, last) {
     
 
 }
+function NewMonth(workers, time, last) {
+    const date = new Date(time)
+    this.date = new Date(date.getFullYear(),date.getMonth(),1);
+    this.team = []
+    workers.reduce((acc,el,i) => {
+        const day = returnDay(acc)
+        this.team = [
+            ...this.team,
+            {
+                worker: el,
+                days: [day],
+                hours: 0
+            }
+        ]
+        return day.type
+    },last)
+    console.log(this);
+    const day = new Date(date.getFullYear(),date.getMonth()+1,0).getDate()-1
+    for (let i = 0; i < day; i++) {
+        workers.reduce((acc,el,i) => {
+            const day = returnDay(acc)
+            this.team[i].days.push(day);
+            return day.type
+        },this.team[4].days[i].type)
+    }
+    workers.reduce((acc,el,i) => {
+        this.team[i].hours = this.team[i].days.reduce((acc, el, index, arr) => {
+            return acc + el.hours
+        },0)
+    
+    },0)
+    
+
+}
+// const team = ['user1','user2','user3','user4','user5','user6']
+// const time = new Date();
+// const test = new NewMonth(team, time.getTime() )
+// console.log(test);
+
 function returnDay(last) {
     switch (last) {
         case 1:
@@ -71,4 +110,4 @@ function returnDay(last) {
     }
 }
 
-export default Month;
+export default NewMonth;
