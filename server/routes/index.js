@@ -28,6 +28,7 @@ router.post('/registration', UserController.registration);
 router.post('/schedule', ScheduleController.set_schedule);
 router.post('/login', UserController.login);
 router.post('/logout', UserController.logout);
+router.get('/schedules', ScheduleController.get_schedules);
 router.get('/refresh', UserController.refresh);
 router.get('/user',midl , UserController.getUser);
 

@@ -1,6 +1,5 @@
 import { useState,useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { set_schedule } from "../redux/actions"
 import Month from "../monthCreathor";
 import '../App.css';
 
@@ -8,7 +7,7 @@ import '../App.css';
 function Editor({team , date, dayClick}) {
     const data = new Date(date);
     const [month,setMonth] = useState();
-    const schedule = useSelector((state) => state.schedule);
+    const schedule = useSelector((state) => state.schedules);
     const dispatch = useDispatch();
     async function res(form) {
         

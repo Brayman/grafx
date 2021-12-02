@@ -39,12 +39,12 @@ header.tabs {
 label {
   border: solid 1px #ccc;
   color: #ccc;
-    border-radius: 10px;
-    font-size: 2em;
-    display: flex;
-    padding: 0px 12px;
-    margin: 0.5em;
-    width: 100%;
+  border-radius: 10px;
+  font-size: 2em;
+  display: flex;
+  padding: 0px 12px;
+  margin: 0.5em;
+  width: 100%;
 }
 .login-page {
   display: flex;
@@ -122,5 +122,6 @@ table {
   align-content: center;
   flex-direction: column;
   flex-grow: 1;
+  margin: auto;
 }
 

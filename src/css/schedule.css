@@ -1,0 +1,22 @@
+@keyframes activate {
+    from {
+      border-radius: 5em;
+    }
+    to {
+        border-radius: 1em;
+    }
+}
+.month {
+    background-color: #ff5722;
+    padding: 5px 10px;
+    border-radius: 1em;
+    margin: 10px;
+    border-style: none;
+    
+}
+.month:hover {
+    animation: activate infinite 10s linear;
+    
+}
+
+  
