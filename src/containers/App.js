@@ -11,7 +11,7 @@ import Main from './Main';
 import {
     Switch,
     Route,
-    Link
+    Redirect
   } from "react-router-dom";
 import { useSelector } from 'react-redux';
   
@@ -30,7 +30,7 @@ function App({params}) {
                     <Profile user={user}/>
                 </Route>
                 <Route exact path='/creator'>
-                    <Creator/>
+                    {user.role === 'admin' ? <Creator/> : <Redirect to='/'/>}
                 </Route>
                 <Route exact path='/login'>
                     <LoginWindow/>

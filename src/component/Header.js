@@ -5,11 +5,11 @@ import { useEffect } from 'react';
 import { login } from "../redux/actions";
 
 
-function Header(params) {
+function Header() {
     const user = useSelector((state) => state.user);
     const dispatch = useDispatch()
     let history = useHistory();
-    async function req(params, url) {
+    async function req() {
             try {
                 const res = await fetch('http://localhost:5000/api/refresh',{
                 
@@ -24,17 +24,17 @@ function Header(params) {
     }
     const date = new Date()
     useEffect(() => {
-        console.log(req());
-        
+        req();        
     },[]);
     return (
         <header>
             <div onClick={()=>history.push('/')}>
                 {date.toLocaleDateString('ru-ru', { day: 'numeric', month: 'long', year: 'numeric'})}
             </div>
+            {user.role === 'admin' ? <button onClick={()=>history.push('/creator')}>Добавить месяц</button> : null}
+            {!user ? <button onClick={()=>history.push('/login')}>Войти</button> : <button onClick={()=>history.push('/profile')}>{user.login}</button>}
             
-            <button onClick={()=>history.push('/login')}>Войти</button>
-            <button onClick={()=>history.push('/profile')}>{user.login}</button>
+            
         </header>
     )
 }
