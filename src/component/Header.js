@@ -15,10 +15,15 @@ function Header() {
                 
                 credentials: 'include'
                 })
-                const ans = await res.json()
-                localStorage.setItem('tok', ans.accessToken) 
-                dispatch(login(ans));
+                if (res.status == 400) {
+                    dispatch({type: 'LOGIN_ERROR'});
+                } else {
+                    const ans = await res.json()
+                    localStorage.setItem('tok', ans.accessToken) 
+                    dispatch(login(ans));
+                }
             } catch (error) {
+                
                 console.error(error);
             }      
     }
@@ -32,7 +37,7 @@ function Header() {
                 {date.toLocaleDateString('ru-ru', { day: 'numeric', month: 'long', year: 'numeric'})}
             </div>
             {user.role === 'admin' ? <button onClick={()=>history.push('/creator')}>Добавить месяц</button> : null}
-            {!user ? <button onClick={()=>history.push('/login')}>Войти</button> : <button onClick={()=>history.push('/profile')}>{user.login}</button>}
+            {!user.login ? <button onClick={()=>history.push('/login')}>Войти</button> : <button onClick={()=>history.push('/profile')}>{user.login}</button>}
             
             
         </header>

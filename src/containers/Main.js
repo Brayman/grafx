@@ -13,11 +13,10 @@ function Main() {
             
     }
     useEffect(() =>  res(),[])
-    const schedules = useSelector((store) => store.schedules)
-    console.log(schedules);
+    const schedules = useSelector((store) => store.schedules);
     return (
         <div>
-            {schedules.length >= 1 ? schedules.map((i)=> <Schedule schedule={i}/>) : null}
+            {schedules.length >= 1 ? schedules.map((item, i)=> <Schedule key={i} schedule={item}/>) : null}
         </div>
     )
 

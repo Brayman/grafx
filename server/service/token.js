@@ -32,16 +32,13 @@ class TokenService {
     async saveToken(login, refreshToken) {
         const tokenData = await UserModel.findOne({login})
         if (tokenData) {
-            console.log(login);
-            const token = await UserModel.findByIdAndUpdate(tokenData._id, {token: {refreshToken}})
-            console.log(login, token);
+            const token = await UserModel.findByIdAndUpdate(tokenData._id, {token: {refreshToken}});
             return token;
         } else {
             console.log('error');
         }
     }
     async removeToken(refreshToken) {
-        console.log('go');
         const tokenData = await UserModel.findOneAndUpdate(refreshToken, {token: null})
         return;
     }

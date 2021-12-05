@@ -50,7 +50,7 @@ class UserService {
         const userData = await TokenService.valRefreshTok(refreshToken);
         const dbToken = await TokenService.findToken(refreshToken);
         if (!userData || !dbToken) {
-            console.log('Не авторизован');
+            return {error: 'Не авторизован'};
         }
         const user = await UserModel.findById(dbToken._id)
         const tokens = TokenService.geterateToken({user: user.login})
