@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { MdPerson, MdLockOutline } from "react-icons/md";
-import { useDispatch } from "react-redux";
-import { login } from "../redux/actions"
+import { useDispatch, useSelector } from "react-redux";
+import { Alert } from "./index";
+import { login, login_fail } from "../redux/actions";
 function Login(params) {
     const [form,setForm] = useState({})
+    const alert = useSelector((state) => state.alert);
     const dispatch = useDispatch()
     async function loginRes(form) {
         
@@ -15,9 +17,14 @@ function Login(params) {
               credentials: 'include',
               body: JSON.stringify(form)
             })
-            const ans = await res.json()
-            localStorage.setItem('tok',ans.accessToken )
-            dispatch(login(ans));
+            if (res.status > 300) {
+                dispatch(login_fail(await res.json()));
+            } else {
+                const ans = await res.json()
+                localStorage.setItem('tok',ans.accessToken )
+                dispatch(login(ans));
+            }
+            
     }
     function inputs(e) {
         switch (e.name) {
@@ -32,8 +39,10 @@ function Login(params) {
                 break;
         }
     }
+    console.log(alert);
     return (
         <div className='login-page'>
+            {alert.type ? <Alert alert={alert}/> : null}
             <label>
                 <MdPerson/>
                 <input type='text' name='login' onChange={e => inputs(e.target)}/>

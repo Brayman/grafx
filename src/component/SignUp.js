@@ -13,7 +13,8 @@ function SignUp() {
             })
             const ans = await res.json()
             localStorage.setItem('tok',ans.accessToken )
-            console.log(ans);
+            
+            
     }
     function inputs(e) {
         switch (e.name) {
