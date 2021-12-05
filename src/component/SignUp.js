@@ -1,5 +1,7 @@
 import { useState } from "react";
-import { MdPerson, MdLockOutline } from "react-icons/md";
+import { MdPerson, MdLockOutline, MdOutlinePersonPin } from "react-icons/md";
+import "../css/sign.css";
+
 function SignUp() {
     const [form,setForm] = useState({})
     async function regRes(form) {
@@ -38,17 +40,43 @@ function SignUp() {
         <div className='sign-page'>
             <label>
                 <MdPerson/>
-                <input type='text' name='login' onChange={e => inputs(e.target)}/>
+                <input  type='text'
+                        name='login'
+                        placeholder='Введите логин'
+                        onChange={e => inputs(e.target)}
+                />
             </label>
             <label>
-                <input type='text' name='first-name' onChange={e => inputs(e.target)}/>
+                <MdOutlinePersonPin/>
+                <input  type='text'
+                        name='first-name'
+                        placeholder='Имя'
+                        onChange={e => inputs(e.target)}
+                />
             </label>
             <label>
-                <input type='text' name='second-name' onChange={e => inputs(e.target)}/>
+                <MdOutlinePersonPin/>
+                <input  type='text'
+                        name='second-name'
+                        onChange={e => inputs(e.target)}
+                        placeholder='Фамилия'
+                />
             </label>
             <label>
                 <MdLockOutline/>
-                <input type='password' name='password' onChange={e => inputs(e.target)}/>
+                <input  type='password'
+                        name='password'
+                        placeholder='Введите пароль'
+                        onChange={e => inputs(e.target)}
+                />
+            </label>
+            <label>
+                <MdLockOutline/>
+                <input  type='password'
+                        name='verify'
+                        placeholder='Повторите пароль'
+                        onChange={e => inputs(e.target)}
+                />
             </label>
             <button onClick={()=>regRes(form)}>
                 Регистрация

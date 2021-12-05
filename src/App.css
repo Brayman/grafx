@@ -12,52 +12,6 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
-
-
-header.tabs {
-  
-  background-color: #fff !important;
-  min-height: 50px;
-  display: flex;
-  align-content: center;
-  align-items: stretch;
-}
-.tab {
-  background-color: #282c3498;
-  flex-grow: 1;
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  align-items: center;
-  cursor: pointer;
-}
-.active.tab {
-  padding: auto;
-  background-color: #282c34;
-  flex-grow: 1;
-}
-label {
-  border: solid 1px #ccc;
-  color: #ccc;
-  border-radius: 10px;
-  font-size: 2em;
-  display: flex;
-  padding: 0px 12px;
-  margin: 0.5em;
-  width: 100%;
-}
-.login-page {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 2em;
-}
-.sign-page {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 2em;
-}
 .App-link {
   color: #61dafb;
 }
