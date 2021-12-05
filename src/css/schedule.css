@@ -18,5 +18,8 @@
     animation: activate infinite 10s linear;
     
 }
+.today {
+    border: 2px solid #cf1515;
+}
 
   

@@ -11,7 +11,10 @@ function Schedule({schedule}) {
         }
     })
     const drawday = (element, i) => {
-        const day = new Date(data.getFullYear(),data.getMonth(),i+1).getDay()
+        const day = new Date(data.getFullYear(),data.getMonth(),i+1).getDay();
+        if (nowDate.getDate() == i+1) {
+            return <td key={`day${i}`} className={`today ${ 6 === day || 0 === day ? ' weekend' : ''}`}>{i+1}</td>
+        }
         return <td key={`day${i}`} className={`${ 6 === day || 0 === day ? 'weekend' : ''}`}>{i+1}</td>
     }
     return open ? (
@@ -27,7 +30,7 @@ function Schedule({schedule}) {
                                 <tr key={row}>
                                     <td>{user.worker}</td>
                                     {schedule.team[row].days.map(( day, i, arr) => { 
-                                    return<td key={i} className={day.type}
+                                    return<td key={i} className={`${nowDate.getDate() == i+1 ? 'today' : ''} ${day.type}`}
                                     >{day.hours}</td>})}
                                     <td>{schedule.team[row].hours}</td>
                                 </tr>

@@ -34,9 +34,6 @@ td {
 .first-day, .second-day, .day {
   background-color: #92d050;
 }
-.today {
-  border: 2px solid #cf1515;
-}
 .weekend {
   background-color: #bfbfbf;
 }
