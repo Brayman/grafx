@@ -1,4 +1,4 @@
-export default (state = {}, {type, payload}) => {
+const User = (state = {}, {type, payload}) => {
     switch (type) {
         case 'LOGIN':
             console.log(payload);
@@ -9,3 +9,4 @@ export default (state = {}, {type, payload}) => {
             return state;
     }
 }
+export default User;

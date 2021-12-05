@@ -1,4 +1,4 @@
-export default (state = null, {type, payload}) => {
+const Alert = (state = {}, {type, payload}) => {
     switch (type) {
         case 'LOGIN_FAIL':
             return {
@@ -11,3 +11,4 @@ export default (state = null, {type, payload}) => {
             return state;
     }
 }
+export default Alert;

@@ -7,6 +7,7 @@ import Graf from '../Graf';
 import pack from '../../package.json'
 import { Header, Profile } from '../component';
 import LoginWindow from './LoginWindow';
+import Main from './Main';
 import {
     Switch,
     Route,
@@ -23,7 +24,7 @@ function App({params}) {
             <Switch>
                 
                 <Route exact path='/'>
-                    <Graf/>
+                    <Main/>
                 </Route>
                 <Route exact path='/profile'>
                     <Profile user={user}/>
