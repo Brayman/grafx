@@ -1,1 +1,1 @@
-export { login } from './user'
+export { login, fetch_registration } from './user'

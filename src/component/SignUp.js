@@ -1,26 +1,21 @@
 import { useState } from "react";
 import { MdPerson, MdLockOutline, MdOutlinePersonPin } from "react-icons/md";
+import { fetch_registration } from "../redux/actions";
 import "../css/sign.css";
+import { useDispatch } from "react-redux";
 
 function SignUp() {
-    const [form,setForm] = useState({})
-    async function regRes(form) {
-        
-        const res = await fetch(`http://localhost:5000/api/registration`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify(form)
-            })
-            const ans = await res.json()
-            localStorage.setItem('tok',ans.accessToken )
-            console.log(ans);
-    }
+    const [form, setForm] = useState({});
+    const [verify, setVerify] = useState(true);
+    const dispatch = useDispatch();
     function inputs(e) {
         switch (e.name) {
             case 'login':
                 setForm({...form, login: e.value})
+                break;
+            case 'verify':
+                setForm({...form, repit_pass: e.value})
+                setVerify(form.password === e.value)
                 break;
             case 'password':
                 setForm({...form, password: e.value})
@@ -69,15 +64,15 @@ function SignUp() {
                         onChange={e => inputs(e.target)}
                 />
             </label>
-            <label>
+            <label className={ verify ? '' : 'error'}>
                 <MdLockOutline/>
                 <input  type='password'
                         name='verify'
                         placeholder='Повторите пароль'
-                        onChange={e => inputs(e.target)}
+                        onBlur={e => inputs(e.target)}
                 />
             </label>
-            <button onClick={()=>regRes(form)}>
+            <button onClick={()=>dispatch(fetch_registration(form))}>
                 Регистрация
             </button>
         </div>
