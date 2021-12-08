@@ -1,13 +1,30 @@
-const path = require('path');
-const axios = require('axios');
-const cors = require('cors');
 const express = require('express');
-const config = require('../config.json');
+
+const cors = require('cors');
+const cookieParser = require("cookie-parser");
+const path = require('path');
 const mongoose = require('mongoose')
+const router = require('./routes/index')
+const jwt = require('jsonwebtoken');
+
+const bot = require('./bot')
+ 
+
 const uri = process.env.MONGODB_URI;
+
+
+
+
 const app = express();
+app.use(express.json({ extended: true }))
+app.use(cookieParser());
+app.use(cors({origin: ['http://localhost:3000', 'https://graforwork.herokuapp.com'],credentials: true}));
+app.use('/api', router);
 
 const PORT = process.env.PORT || 5000;
+const buildPath = path.join(__dirname, '..', 'build');
+app.use(express.static(buildPath));
+
 
 async function start() {
   try {
@@ -23,13 +40,6 @@ async function start() {
     process.exit(1)
   }
 }
-
-const buildPath = path.join(__dirname, '..', 'build');
-app.use(express.static(buildPath));
-app.use(cors());
-
-app.get('/jobs', async (req, res) => {
-    res.send('job');
-});
+bot.launch();
 
 start()

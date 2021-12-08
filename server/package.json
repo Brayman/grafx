@@ -1,6 +1,6 @@
 {
   "name": "server",
-  "version": "0.0.2",
+  "version": "0.1.7",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
@@ -9,9 +9,14 @@
   },
   "dependencies": {
     "axios": "0.19.2",
+    "bcrypt": "^5.0.1",
+    "cookie-parser": "^1.4.6",
     "cors": "2.8.5",
     "express": "4.17.1",
+    "express-session": "^1.17.2",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.0.13",
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.4",
+    "telegraf": "^4.4.2"
   }
 }
