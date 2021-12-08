@@ -1,6 +1,5 @@
-import { mapKeys, mapValues } from 'lodash';
 import { useEffect, useState } from 'react';
-import { renderToString } from 'react-dom/server'
+import Menu from './ContextMenu';
 import './App.css';
 const workers = ['user1','user2','user3','user4','user5','user6']
 
@@ -25,7 +24,6 @@ function Month(workers, date, last) {
         },this[workers[4]].days[i].type)
     }
     workers.reduce((acc,el,i) => {
-        console.log(el);
         this[el].hours = this[el].days.reduce((acc, el, index, arr) => {
             return acc + el.hours
         },0)
@@ -80,15 +78,14 @@ function returnDay(last) {
 
 
 
-function Row({month}) {
-    const [contextMenu, setContextMenu] = useState({open: false});
+function Row({month, open}) {
     const date = new Date()
     const numberDay = date.getDate()
     const drawGraf = (element, i) => {
         if (i+1 === numberDay) {
             return <td key={`item${i}`} className={`${element.type} today`}>{element.hours}</td>
         }
-        return <td key={`item${i}`} className={element.type}>{element.hours}</td>
+        return <td key={`item${i}`} className={element.type} onClick={(e)=>open(e,element.hours)}>{element.hours}</td>
     }
     const elements = []
     for (const key in month) {
@@ -112,7 +109,7 @@ function Row({month}) {
 function Graf(params) {
     const date = new Date()
     const [month, setMonth] = useState(new Month(workers,date,'night'))
-    
+    const [contextMenu, setContextMenu] = useState({open: false, position: [0,0] ,another: ''});
     const numberDay = date.getDate()
     useEffect(()=> {
             setMonth( new Month(workers,date,'night') )   
@@ -126,25 +123,34 @@ function Graf(params) {
             return <td key={`day${i}`} className={`${ 6 === day || 0 === day ? 'weekend' : ''}`}>{i+1}</td>
         }
    
-
-
     
 
     
-    return <table>
+
+    
+    return <div className='table'>
+        { contextMenu.open ? <Menu position={contextMenu.position} item={contextMenu.another} close={()=>setContextMenu({open: false})}/> : null}
+        <table>
             <tbody>
-            <tr>
+                <tr>
                     <td>{new Date(month.date).toLocaleDateString('ru-ru', {month: 'long'})}</td>
                     {
                         month.user1.days.map(drawday)
                     }
                 </tr>
                 
-                <Row month={month}/>
+                <Row month={month} open={(e,item)=> {
+                    setContextMenu({
+                        open: !contextMenu.open,
+                        position: [e.target.offsetLeft,e.target.offsetTop+e.target.offsetHeight],
+                        another: item,
+                    })
+                    console.log(e);
+                }}/>
                
                 
             </tbody>
-            
         </table>
+    </div>
 }
 export default Graf

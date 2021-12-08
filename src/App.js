@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import Graf from './Graf';
-import pack from '../package.json'
+import {name, version, author} from '../package.json'
 import { renderToString } from 'react-dom/server'
 import {
     Switch,
@@ -10,19 +10,13 @@ import {
   } from "react-router-dom";
 
 function App(params) {
-    return (
-        <div className='app'>
-                <Switch>
-                    <Route path='/'>
-                        <Graf/>
-                    </Route>
-                </Switch>
-                
-                <footer>
-                    version: {pack.version}
-                </footer>
-            </div>
-    )
+    return <div className='app'>
+        <Graf/>
+        <footer>
+           <h4>{name} version: {version}</h4>
+           <h6>Created by {author}</h6>
+        </footer>
+    </div>
        
 }
 
