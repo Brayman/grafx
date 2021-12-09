@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { MdPerson, MdLockOutline } from "react-icons/md";
-import { useDispatch } from "react-redux";
-import { loginRes } from "../redux/actions"
+import { useDispatch, useSelector } from "react-redux";
+import { Alert } from "./index";
+import { fetch_login } from "../redux/actions";
 function Login(params) {
     const [form,setForm] = useState({})
+    const alert = useSelector((state) => state.alert);
     const dispatch = useDispatch()
     
     function inputs(e) {
@@ -19,8 +21,10 @@ function Login(params) {
                 break;
         }
     }
+    console.log(alert);
     return (
         <div className='login-page'>
+            {alert.type ? <Alert alert={alert}/> : null}
             <label>
                 <MdPerson/>
                 <input type='text' name='login' onChange={e => inputs(e.target)}/>
@@ -29,7 +33,7 @@ function Login(params) {
                 <MdLockOutline/>
                 <input type='password' name='password' onChange={e => inputs(e.target)}/>
             </label>
-            <button onClick={()=>dispatch(loginRes(form))}>
+            <button onClick={()=>dispatch(fetch_login(form))}>
                 Войти
             </button>
         </div>

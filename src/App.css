@@ -12,64 +12,11 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
-
-
-header.tabs {
-  
-  background-color: #fff !important;
-  min-height: 50px;
-  display: flex;
-  align-content: center;
-  align-items: stretch;
-}
-.tab {
-  background-color: #282c3498;
-  flex-grow: 1;
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  align-items: center;
-  cursor: pointer;
-}
-.active.tab {
-  padding: auto;
-  background-color: #282c34;
-  flex-grow: 1;
-}
-label {
-  border: solid 1px #ccc;
-  color: #ccc;
-    border-radius: 10px;
-    font-size: 2em;
-    display: flex;
-    padding: 0px 12px;
-    margin: 0.5em;
-    width: 100%;
-}
-.login-page {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 2em;
-}
-.sign-page {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 2em;
-}
 .App-link {
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+
 
 td {
   border: 1px solid #333;
@@ -79,9 +26,6 @@ td {
 
 .first-day, .second-day, .day {
   background-color: #92d050;
-}
-.today {
-  border: 2px solid #cf1515;
 }
 .weekend {
   background-color: #bfbfbf;
@@ -93,12 +37,6 @@ td {
   background-color: #ffffff;
 }
 
-.table {
-  display: flex;
-  justify-content: space-evenly;
-  align-content: flex-start;
-  align-items: center;
-}
 .col {
   display: flex;
   flex-direction: column;
@@ -115,11 +53,49 @@ td {
 .app {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 97vh;
 }
-table {
+.table {
   display: flex;
   align-content: center;
   flex-direction: column;
+  flex-grow: 9;
+}
+footer {
+  display: flex;
+  justify-content: center;
   flex-grow: 1;
+  flex-direction: column;
+  align-items: center;
+}
+.menu {
+  position: fixed;
+  background-color: #ffffff;
+  
+  border-radius: 1rem;
+  border: #bfbfbf solid 1px;
+  animation: open-context-menu 0.2s linear;
+}
+.menu-item {
+  padding: 1em 1em;
+}
+.menu-item:hover, .menu-item:active, .menu-item:focus {
+  border-radius: inherit;
+  background-color: #bfbfbf;
+  cursor: pointer;
+}
+p {
+  margin: 0;
+}
+p {
+  margin: 0;
+}
+@keyframes open-context-menu {
+  from {
+    font-size: 1px;
+    padding: 0;
+  }
+  to {
+    font-size: 16px;
+  }
 }

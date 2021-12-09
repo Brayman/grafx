@@ -20,12 +20,12 @@ class UserService {
         const user = await UserModel.findOne({login});
         if (!user) {
             console.log(`ошибка аунтификации. Нет пользователя ${login}`);
-            return {error: 'log'}
+            return {error: `ошибка аунтификации. Неверный логин или пароль`}
         }
         const isPassEquals = await bcrypt.compare(password, user.password);
         if (!isPassEquals) {
             console.log(`ошибка аунтификации. ${login} ввёл неверный пароль`);
-            return {error: 'pass'}
+            return {error: `ошибка аунтификации. Неверный логин или пароль`}
         }
         const tokens = TokenService.geterateToken({user: user.login})
         await TokenService.saveToken(user.login, tokens.refreshToken);
@@ -39,6 +39,7 @@ class UserService {
     }
     async logout(refreshToken) {
         await TokenService.removeToken(refreshToken);
+        return;
 
     }
     async refresh(refreshToken) {
@@ -49,7 +50,7 @@ class UserService {
         const userData = await TokenService.valRefreshTok(refreshToken);
         const dbToken = await TokenService.findToken(refreshToken);
         if (!userData || !dbToken) {
-            console.log('Не авторизован');
+            return {error: 'Не авторизован'};
         }
         const user = await UserModel.findById(dbToken._id)
         const tokens = TokenService.geterateToken({user: user.login})

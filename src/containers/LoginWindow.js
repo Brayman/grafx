@@ -2,13 +2,9 @@ import { useLocation } from "react-router";
 import { useHistory } from "react-router-dom";
 import { LogIn, SignUp } from "../component";
 
-const { useState } = require("react");
-
-function LoginWindow(params) {
+function LoginWindow() {
     let history = useHistory();
     const lok = useLocation();
-    console.log(lok);
-    const [page,setPage] = useState(lok.pathname)
     return (
         <div className='window'>
             <header className='tabs'>

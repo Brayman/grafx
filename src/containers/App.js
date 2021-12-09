@@ -1,15 +1,17 @@
 import React from 'react';
 import '../App.css';
 import '../css/basic.css';
+import Creator from './Creator';
 
 import Graf from '../Graf';
 import pack from '../../package.json'
 import { Header, Profile } from '../component';
 import LoginWindow from './LoginWindow';
+import Main from './Main';
 import {
     Switch,
     Route,
-    Link
+    Redirect
   } from "react-router-dom";
 import { useSelector } from 'react-redux';
   
@@ -22,10 +24,13 @@ function App({params}) {
             <Switch>
                 
                 <Route exact path='/'>
-                    <Graf/>
+                    <Main/>
                 </Route>
                 <Route exact path='/profile'>
                     <Profile user={user}/>
+                </Route>
+                <Route exact path='/creator'>
+                    {user.role === 'admin' ? <Creator/> : <Redirect to='/'/>}
                 </Route>
                 <Route exact path='/login'>
                     <LoginWindow/>
