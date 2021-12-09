@@ -16,14 +16,7 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+
 
 td {
   border: 1px solid #333;
@@ -44,12 +37,6 @@ td {
   background-color: #ffffff;
 }
 
-.table {
-  display: flex;
-  justify-content: space-evenly;
-  align-content: flex-start;
-  align-items: center;
-}
 .col {
   display: flex;
   flex-direction: column;
@@ -68,11 +55,45 @@ td {
   flex-direction: column;
   height: 100vh;
 }
-table {
+.table {
   display: flex;
   align-content: center;
   flex-direction: column;
   flex-grow: 1;
   margin: auto;
 }
+<<<<<<< HEAD
 
+=======
+.menu {
+  position: fixed;
+  background-color: #ffffff;
+  
+  border-radius: 1rem;
+  border: #bfbfbf solid 1px;
+  animation: open-context-menu 0.2s linear;
+}
+.menu-item {
+  padding: 1em 1em;
+}
+.menu-item:hover, .menu-item:active, .menu-item:focus {
+  border-radius: inherit;
+  background-color: #bfbfbf;
+  cursor: pointer;
+}
+p {
+  margin: 0;
+}
+p {
+  margin: 0;
+}
+@keyframes open-context-menu {
+  from {
+    font-size: 1px;
+    padding: 0;
+  }
+  to {
+    font-size: 16px;
+  }
+}
+>>>>>>> dd7eac0 (Украсил контексное меню)
