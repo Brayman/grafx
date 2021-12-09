@@ -62,38 +62,3 @@ td {
   flex-grow: 1;
   margin: auto;
 }
-<<<<<<< HEAD
-
-=======
-.menu {
-  position: fixed;
-  background-color: #ffffff;
-  
-  border-radius: 1rem;
-  border: #bfbfbf solid 1px;
-  animation: open-context-menu 0.2s linear;
-}
-.menu-item {
-  padding: 1em 1em;
-}
-.menu-item:hover, .menu-item:active, .menu-item:focus {
-  border-radius: inherit;
-  background-color: #bfbfbf;
-  cursor: pointer;
-}
-p {
-  margin: 0;
-}
-p {
-  margin: 0;
-}
-@keyframes open-context-menu {
-  from {
-    font-size: 1px;
-    padding: 0;
-  }
-  to {
-    font-size: 16px;
-  }
-}
->>>>>>> dd7eac0 (Украсил контексное меню)
