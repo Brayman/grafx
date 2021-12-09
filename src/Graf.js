@@ -4,7 +4,6 @@ import Menu from './ContextMenu';
 import './App.css';
 const workers = ['user1','user2','user3','user4','user5','user6']
 
-
 function Row({month, open}) {
     const date = new Date()
     const numberDay = date.getDate()
@@ -62,8 +61,8 @@ function Graf({userDate, lastday}) {
                 )
         }
             return <td key={`day${i}`} className={`${ 6 === day || 0 === day ? 'weekend' : ''}`}>{i+1}</td>
-        }
-   
+    }
+    
     const Menu = (position) => {
         
         return <div className='menu' style={{left: contextMenu.position[0], top: contextMenu.position[1]}}>
@@ -97,4 +96,4 @@ function Graf({userDate, lastday}) {
         </table>
     </div>
 }
-export default Graf
+export default Graf;

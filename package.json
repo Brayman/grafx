@@ -1,6 +1,7 @@
 {
   "name": "grafx",
   "version": "0.4.5",
+  "author": "Artem Rakitskiy",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.15.0",
