@@ -30,6 +30,11 @@ label {
     width: 100%;
     height: 1em;
 }
+label.error {
+  color: #f44336;
+  border-color: #f44336;
+  background-color: #f443366b;
+}
   .login-page {
     display: flex;
     flex-direction: column;
