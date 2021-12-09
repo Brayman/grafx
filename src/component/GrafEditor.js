@@ -1,5 +1,6 @@
 import { useState,useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
+import { fetch_save_shedules } from '../redux/actions';
 import Month from "../monthCreathor";
 import '../App.css';
 
@@ -9,18 +10,7 @@ function Editor({team , date, dayClick}) {
     const [month,setMonth] = useState();
     const schedule = useSelector((state) => state.schedules);
     const dispatch = useDispatch();
-    async function res(form) {
-        
-        const res = await fetch(`http://localhost:5000/api/schedule`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify(form)
-            })
-            const ans = await res.json()
-            console.log(ans);
-    }
+    
     useEffect(() => {
         setMonth(new Month(team, data.getTime() ))        
     },[]);
@@ -67,7 +57,7 @@ function Editor({team , date, dayClick}) {
             )}
             </tbody>
         </table>
-        <button onClick={() => res(month)}>Сохранить</button>
+        <button onClick={() => dispatch(fetch_save_shedules(month))}>Сохранить</button>
         </div>
     )
 }
