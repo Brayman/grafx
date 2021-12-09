@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import Month from './monthCreathor';
+import Menu from './ContextMenu';
 import './App.css';
 const workers = ['user1','user2','user3','user4','user5','user6']
 
@@ -71,11 +72,8 @@ function Graf({userDate, lastday}) {
         </div>
     }
 
-    
-
-    
-    return <div>
-        { contextMenu.open ? <Menu/> : null}
+    return <div className='table'>
+        { contextMenu.open ? <Menu position={contextMenu.position} item={contextMenu.another} close={()=>setContextMenu({open: false})}/> : null}
         <table>
             <tbody>
                 <tr>
