@@ -18,6 +18,17 @@ class ScheduleController {
             console.log(error);
         }
     }
+    async get_schedule(req, res) {
+        try {
+            
+            const date = new Date(req.params.date)
+            console.log(req.params.date,date);
+            const schedules = await ScheduleModel.find({date});
+            res.json(schedules[0])
+        } catch (error) {
+            console.log(error);
+        }
+    }
 }
 
 module.exports = new ScheduleController(); 

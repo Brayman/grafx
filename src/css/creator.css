@@ -53,3 +53,22 @@ button.active {
     border: solid 1px #66b1e7f7;
     box-shadow: 0px 0px 2px 2px #66b1e7f7;
 }
+section.schedule {
+    display: flex;
+    flex-direction: row;
+    margin: 1em;
+    border: solid 1px #e6e6e6;
+    padding: 5px;
+    border-radius: 5px;
+    justify-content: space-around;
+}
+.previous {
+    justify-content: start;
+}
+td {
+    height: 25px;
+}
+td:hover {
+    border: solid 1px #66b1e7f7;
+    box-shadow: 0px 0px 4px 2px #66b1e7f7;
+}

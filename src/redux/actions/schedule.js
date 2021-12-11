@@ -3,6 +3,10 @@ export const set_schedule = (payload) => ({
     type: 'SET_SCHEDULE',
     payload
 })
+export const get_prev_schedule = (payload) => ({
+    type: 'GET_PREVIOUS_SCHEDULE',
+    payload
+})
 export const get_shedules = payload => ({
     type: 'GET_SCHEDULES',
     payload
@@ -32,4 +36,10 @@ export const fetch_save_shedules = payload => async dispatch => {
         })
         const ans = await res.json()
         console.log(ans);
+}
+export const fetch_previous_shedule = payload => async dispatch => {  
+    const res = await fetch(`${URL}/api/schedule/${payload}`)
+        const ans = await res.json()
+        console.log(ans);
+        dispatch(get_prev_schedule(ans))
 }

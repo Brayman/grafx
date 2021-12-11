@@ -13,5 +13,6 @@ export {
     set_schedule,
     get_shedules,
     fetch_shedules,
-    fetch_save_shedules
+    fetch_save_shedules,
+    fetch_previous_shedule
 } from './schedule';
