@@ -1,19 +1,15 @@
 import { useEffect, useState } from "react";
-import { BiChevronDown } from "react-icons/bi";
 import { fetch_previous_shedule } from "../redux/actions"
 import '../css/creator.css';
 
-import Editor from "../component/GrafEditor";
+import {Editor, Panel} from "../component";
 import { useDispatch, useSelector } from "react-redux";
 const worke = ['user1','user2','user3','user4','user5','user6']
+
+
 function Creator(params) {
-    const month = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь']
     const [workers, setWorkers] = useState([])
-    const date = new Date();
-    const [selectDate, setSelectDate] = useState({
-        month: date.getMonth(),
-        year: date.getFullYear()
-    });
+    
     const [selectDay, setSelectDay] = useState()
     const [newMonth, createMonth] = useState()
     const dayClick = (activeItem) => {
@@ -48,24 +44,7 @@ function Creator(params) {
     return (
         <div>
 
-            <section>
-                <div className='create-options-panel'>
-                    <select className='month-input' value={selectDate.month} onChange={(e)=>setSelectDate({...selectDate,month: e.target.value})}>
-                        {month.map((item, i, arr) => {
-                            
-                            return <option key={i} value={i} >{item}</option>
-                        })}
-                    </select>
-                    <input type='number' className='year-input' placeholder='Год' defaultValue={selectDate.year} onChange={(e)=>setSelectDate({...selectDate,year: e.target.value})}/>
-                    <button onClick={() => {
-                        createMonth(new Date(selectDate.year, selectDate.month, 1).getTime())
-                        dispatch(fetch_previous_shedule(new Date(selectDate.year, selectDate.month-1, 1)))
-                    }}>Создать</button>
-                </div>
-                <div className='more-panel'>
-                    <BiChevronDown/> дополнительные параметры    
-                </div>
-            </section>
+            
             {/* <div>
                 <input type='month'/>
                 <select onChange={(e) => { console.log(e.target.value); setWorkers([...workers,e.target.value])}}>
@@ -101,7 +80,7 @@ function Creator(params) {
                 </button>
             </div>
             <section className="schedule">
-                <section className="previous">
+                { prev_schedule.team ? <section className="previous">
                     <table>
                         <tbody>
                             <tr>
@@ -112,7 +91,7 @@ function Creator(params) {
                                     {prev_schedule.team[0].days.length}
                                 </td>
                             </tr>
-                            { prev_schedule.team ? prev_schedule.team.map((item, i) => {
+                            {prev_schedule.team.map((item, i) => {
                                 console.log(item.days[item.days.length-2]);
                                 return (
                                     <tr>
@@ -124,15 +103,16 @@ function Creator(params) {
                                         </td>
                                     </tr>
                                 )
-                            }) : null}
+                            })} 
                             
                         </tbody>
                     </table>
-                </section>
+                </section> : null}
                 {
-                    newMonth ? <section  className='graf'>
-                    <Editor team={worke} date={newMonth} dayClick={() => dayClick(selectDay)}/>
-                </section> : null
+                    !newMonth ?  <Panel setDate={(e) => createMonth(e)} getPrev={(e) => dispatch(fetch_previous_shedule(e))}/>: 
+                        <section  className='graf'>
+                            <Editor team={worke} date={newMonth} dayClick={() => dayClick(selectDay)}/>
+                        </section>
                 }
             </section>
             
