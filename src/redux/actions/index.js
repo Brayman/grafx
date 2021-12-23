@@ -9,6 +9,10 @@ export {
     fetch_refresh_sesion
 } from './user';
 export { close_alert } from './alert';
+export { 
+    fetch_save_team,
+    fetch_get_team
+} from './team';
 export {
     set_schedule,
     get_shedules,
