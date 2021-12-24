@@ -12,7 +12,7 @@ class TeamController {
     }
     async get_team(req, res) {
         try {
-            const team = await TeamModel.find({ team: req.params.login});
+            const team = await TeamModel.findOne({ team: req.params.login});
             console.log(team);
             res.json(team.team)
         } catch (error) {

@@ -10,6 +10,10 @@ export const login_fail = (payload) => ({
 export const logout = () => ({
   type: 'LOGOUT'
 });
+export const get_users = (payload) => ({
+  type: 'GET_USERS',
+  payload
+});
 
 export const fetch_login = payload => async (dispatch) => {
   const res = await fetch(`${URL}/api/login`, {
@@ -72,3 +76,8 @@ export const fetch_refresh_sesion = (form) => async dispatch => {
     console.error(error);
   }      
 }
+export const fetch_get_users = (payload) => async (dispatch) => {
+  const res = await fetch(`${URL}/api/users`);
+  const ans = await res.json()
+  dispatch(get_users(ans));
+};

@@ -58,8 +58,9 @@ class UserService {
         return {...tokens, user}
     }
     async getUser() {
-        const user = await UserModel.find();
-        return user;
+        const users = await UserModel.find();
+        const bit = users.map((item) => ({login: item.login, first_name: item.first_name, second_name: item.second_name}));
+        return bit;
     }
 }
 

@@ -6,7 +6,8 @@ export {
     fetch_login,
     fetch_logout,
     fetch_registration,
-    fetch_refresh_sesion
+    fetch_refresh_sesion,
+    fetch_get_users
 } from './user';
 export { close_alert } from './alert';
 export { 
