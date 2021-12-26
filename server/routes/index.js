@@ -35,6 +35,7 @@ router.get('/refresh', UserController.refresh);
 router.get('/users', UserController.getUser);
 router.get('/team/:login', TeamController.get_team);
 router.post('/team', TeamController.save_team);
+router.put('/team/:login', TeamController.update_team);
 
 
 

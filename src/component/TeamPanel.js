@@ -11,7 +11,7 @@ function WorkerInput({add, cancel}) {
     )
 }
 
-function Team({team, users, saveTeam}) {
+function Team({team, users, saveTeam, updateTeam}) {
     const [workers, setWorkers] = useState([])
     const [options, changeOption] = useState({
         edit: false,
@@ -40,7 +40,7 @@ function Team({team, users, saveTeam}) {
         return (
             <section className="team">
                 {team.map((item, i, arr) => {return <div className="worker">{item.first_name}</div>})}
-                <button className="team_button" onClick={() => { changeOption({...options,edit: true}); setWorkers(team)}}>Изменить</button>
+                <button className="team_button" onClick={() => {setWorkers(team); changeOption({...options,edit: true})}}>Изменить</button>
             </section>
         )
     } else {
@@ -54,7 +54,11 @@ function Team({team, users, saveTeam}) {
                     })}
                     <option>Акаунт без профиля</option>
                 </select>}
+                { team.lenght !== 0 ? 
+                    <button className="team_button" onClick={() => {updateTeam(workers); changeOption({...options,edit: false}) }}>Обновить</button> 
+                    : 
                     <button className="team_button" onClick={() => {saveTeam(workers); changeOption({...options,edit: false}) }}>Сохранить</button>
+                }
             </section>
         )
     }

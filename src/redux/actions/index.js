@@ -12,6 +12,7 @@ export {
 export { close_alert } from './alert';
 export { 
     fetch_save_team,
+    fetch_update_team,
     fetch_get_team
 } from './team';
 export {
