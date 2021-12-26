@@ -5,18 +5,13 @@ import { fetch_logout, fetch_get_team, fetch_get_users, fetch_save_team } from "
 import TeamPanel from "./TeamPanel";
 import '../css/profile.css';
 
-function Profile() {
-    const [workers, setWorkers] = useState([])
+function Profile({user}) {
     const dispatch = useDispatch();
     const {user, users, team} = useSelector((state) => state)
     useEffect(() => {
         dispatch(fetch_get_team(user.login))
         dispatch(fetch_get_users())
     },[])
-    
-
-    
-
     if (user.login) {
         return (
             <section>
