@@ -10,10 +10,18 @@ class TeamController {
             console.log(error);
         }
     }
+    async update_team(req, res, next) {
+        try {
+            const team = await TeamModel.findOneAndUpdate({"team.login": req.params.login},{team: req.body},{new: true});
+            res.json(team.team);
+            
+        } catch (error) {
+            console.log(error);
+        }
+    }
     async get_team(req, res) {
         try {
-            const team = await TeamModel.findOne({ "team.login": req.params.login});
-            console.log(team);
+            const team = await TeamModel.findOne({"team.login": req.params.login});
             res.json(team.team)
         } catch (error) {
             console.log(error);
