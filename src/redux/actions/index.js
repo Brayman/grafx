@@ -6,9 +6,14 @@ export {
     fetch_login,
     fetch_logout,
     fetch_registration,
-    fetch_refresh_sesion
+    fetch_refresh_sesion,
+    fetch_get_users
 } from './user';
 export { close_alert } from './alert';
+export { 
+    fetch_save_team,
+    fetch_get_team
+} from './team';
 export {
     set_schedule,
     get_shedules,

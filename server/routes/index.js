@@ -1,6 +1,7 @@
 const Router = require('express');
 const UserController = require('../controllers/user');
-const ScheduleController = require('../controllers/schedule')
+const ScheduleController = require('../controllers/schedule');
+const TeamController = require('../controllers/team');
 const router = new Router();
 
 
@@ -31,7 +32,10 @@ router.post('/logout', UserController.logout);
 router.get('/schedules', ScheduleController.get_schedules);
 router.get('/schedule/:date', ScheduleController.get_schedule);
 router.get('/refresh', UserController.refresh);
-router.get('/user',midl , UserController.getUser);
+router.get('/users', UserController.getUser);
+router.get('/team/:login', TeamController.get_team);
+router.post('/team', TeamController.save_team);
+
 
 
 module.exports = router;

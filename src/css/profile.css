@@ -1,0 +1,51 @@
+.team {
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.worker {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #e6e6e67d;
+    border: solid 1px #e6e6e6;
+    border-radius: 5px;
+    padding: 0.2em 1em;
+    margin: 0.2em 1em;
+    cursor: pointer;
+}
+.team_button {
+    background-color: #e6e6e67d;
+    border: solid 1px #e6e6e6;
+    border-radius: 5px;
+    padding: 0.2em 1em;
+    margin: 0.2em 1em;
+}
+.team_select {
+    border: solid 1px #e6e6e6;
+    border-radius: 5px;
+    padding: 0.2em 1em;
+    margin: 0.2em 1em;
+    cursor: pointer;
+}
+.worker_input {
+    display: flex;
+    flex-direction: row;
+    border: solid 1px #e6e6e6;
+    border-radius: 5px;
+    margin: 0.2em 1em;
+}
+.button_ok {
+    background-color: #92d050;
+    padding: 0.5em 1em;
+    border-radius: 0;
+    margin: 0;
+}
+.button_cancel {
+    background-color: #f44336;
+    padding: 0.5em 1em;
+    border-radius: 0;
+    margin: 0;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+}

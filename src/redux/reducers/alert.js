@@ -7,6 +7,11 @@ const Alert = (state = {}, {type, payload}) => {
             }
         case 'CLOSE_ALERT':
             return {}
+        case 'FAIL_GET_TEAM':
+            return {
+                type: 'error',
+                message: payload.error
+            }
         default:
             return state;
     }
