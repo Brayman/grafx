@@ -5,6 +5,9 @@ button {
     border-style: none;
     cursor: pointer;
 }
+button:hover {
+    background-color: #dbdada;
+}
 input {
     border: none;
     outline: none;

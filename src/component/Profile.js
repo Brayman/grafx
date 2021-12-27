@@ -15,7 +15,6 @@ function Profile() {
     const dispatch = useDispatch();
     const {user, users, team} = useSelector((state) => state)
     useEffect(() => {
-        dispatch(fetch_get_team(user.login))
         dispatch(fetch_get_users())
     },[])
     if (user.login) {

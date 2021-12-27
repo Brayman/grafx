@@ -1,41 +1,42 @@
-function Month(workers, time, last) {
-    const date = new Date(time)
-    this.date = new Date(date.getFullYear(),date.getMonth(),1);
-    workers.reduce((acc,el,i) => {
-        const day = returnDay(acc)
-        this[el] = {
-            days: [day],
-            hours: 0
-        }
-        return day.type
-    },last)
-    const day = new Date(date.getFullYear(),date.getMonth()+1,0).getDate()-1
-    for (let i = 0; i < day; i++) {
-        workers.reduce((acc,el,i) => {
-            const day = returnDay(acc)
-            this[el].days.push(day);
-            return day.type
-        },this[workers[4]].days[i].type)
-    }
-    workers.reduce((acc,el,i) => {
-        this[el].hours = this[el].days.reduce((acc, el, index, arr) => {
-            return acc + el.hours
-        },0)
+// function Month(workers, time, last) {
+//     const date = new Date(time)
+//     this.date = new Date(date.getFullYear(),date.getMonth(),1);
+//     workers.reduce((acc,el,i) => {
+//         const day = returnDay(acc)
+//         this[el] = {
+//             days: [day],
+//             hours: 0
+//         }
+//         return day.type
+//     },last)
+//     const day = new Date(date.getFullYear(),date.getMonth()+1,0).getDate()-1
+//     for (let i = 0; i < day; i++) {
+//         workers.reduce((acc,el,i) => {
+//             const day = returnDay(acc)
+//             this[el].days.push(day);
+//             return day.type
+//         },this[workers[4]].days[i].type)
+//     }
+//     workers.reduce((acc,el,i) => {
+//         this[el].hours = this[el].days.reduce((acc, el, index, arr) => {
+//             return acc + el.hours
+//         },0)
     
-    },0)
+//     },0)
     
 
-}
+// }
 function NewMonth(workers, time, last) {
     const date = new Date(time)
     this.date = new Date(date.getFullYear(),date.getMonth(),1);
     this.team = []
     workers.reduce((acc,el,i) => {
+        console.log(el);
         const day = returnDay(acc)
         this.team = [
             ...this.team,
             {
-                worker: el,
+                worker: el.first_name || el.login,
                 days: [day],
                 hours: 0
             }
@@ -56,9 +57,7 @@ function NewMonth(workers, time, last) {
             return acc + el.hours
         },0)
     
-    },0)
-    
-
+    },0);
 }
 // const team = ['user1','user2','user3','user4','user5','user6']
 // const time = new Date();
@@ -109,5 +108,4 @@ function returnDay(last) {
             }
     }
 }
-
 export default NewMonth;

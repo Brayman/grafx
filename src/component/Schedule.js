@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { MdCreate } from "react-icons/md";
 import '../css/schedule.css'
 
 function Schedule({schedule}) {
@@ -22,8 +23,13 @@ function Schedule({schedule}) {
             <table>
                 <tbody>
                     <tr>
-                        <td onClick={()=>setOpen(!open)}>{data.toLocaleDateString('ru-ru', {month: 'long'})}</td>
+                        <td className="button" onClick={()=>setOpen(!open)}>
+                            {data.toLocaleDateString('ru-ru', {month: 'long'})}
+                        </td>
                         {schedule.team[0].days.map(drawday)}
+                        <td className="button">
+                            <MdCreate/>
+                        </td>
                     </tr>
                         {schedule.team.map((user, row) => {
                             return (
