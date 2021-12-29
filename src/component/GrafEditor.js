@@ -1,20 +1,18 @@
 import { useState,useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetch_save_shedules, fetch_get_team } from '../redux/actions';
-import Month from "../monthCreathor";
 import '../App.css';
 
 
-function Editor({team , date, dayClick}) {
+function Editor({ emptyMonth, date, dayClick}) {
     const data = new Date(date);
     const [month,setMonth] = useState();
     const user = useSelector((state) => state.user);
     const dispatch = useDispatch();
-    
+    console.log(emptyMonth);
     useEffect(() => {
-
-        dispatch(fetch_get_team(user.login))
-        setMonth(new Month(team, data.getTime() ))        
+        dispatch(fetch_get_team(user.login))  
+        setMonth(emptyMonth)   
     },[]);
     const drawday = (element, i) => {
         const day = new Date(data.getFullYear(),data.getMonth(),i+1).getDay()

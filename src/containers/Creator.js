@@ -1,14 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { fetch_previous_shedule } from "../redux/actions"
 import '../css/creator.css';
-
 import {Editor, Panel} from "../component";
 import { useDispatch, useSelector } from "react-redux";
-
+import Month from "../monthCreathor";
 
 function Creator({schedule}) {
-    const [selectDay, setSelectDay] = useState()
-    const [newMonth, createMonth] = useState()
+    const [selectDay, setSelectDay] = useState();
+    const [newMonth, createMonth] = useState();
+    const [date, setDate] = useState(0);
     const dayClick = (activeItem) => {
         switch (activeItem) {
             case 'work-day':
@@ -91,9 +91,9 @@ function Creator({schedule}) {
                     </table>
                 </section> : null}
                 {
-                    !newMonth ?  <Panel setDate={(e) => createMonth(e)} getPrev={(e) => dispatch(fetch_previous_shedule(e))}/>: 
+                    !newMonth ?  <Panel setDate={(e) => createMonth(new Month(team, e))} getPrev={(e) => dispatch(fetch_previous_shedule(e))}/>: 
                         <section  className='graf'>
-                             <Editor team={team} date={newMonth} dayClick={() => dayClick(selectDay)}/>
+                             <Editor emptyMonth={newMonth} date={date} dayClick={() => dayClick(selectDay)}/>
                         </section>
                 }
             </section>
