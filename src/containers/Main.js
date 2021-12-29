@@ -6,7 +6,7 @@ import { Schedule, Alert } from "../component"
 function Main() {
     const dispatch = useDispatch();
     const schedules = useSelector((store) => store.schedules);
-    useEffect(() =>  dispatch(fetch_shedules()),[schedules.length])
+    useEffect(() =>  dispatch(fetch_shedules()),[schedules.length, dispatch])
     
     const alert = useSelector((store) => store.alert);
     return (
