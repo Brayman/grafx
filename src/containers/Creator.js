@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { fetch_previous_shedule } from "../redux/actions"
 import '../css/creator.css';
 

@@ -1,4 +1,4 @@
-export default (state = [], {type, payload}) => {
+const schedule = (state = [], {type, payload}) => {
     switch (type) {
         case 'GET_SCHEDULES':
             return payload;
@@ -10,3 +10,4 @@ export default (state = [], {type, payload}) => {
             return state;
     }
 }
+export default schedule;

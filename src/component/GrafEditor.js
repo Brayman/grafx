@@ -1,6 +1,6 @@
 import { useState,useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { fetch_save_shedules, fetch_get_team , fetch_save_team } from '../redux/actions';
+import { fetch_save_shedules, fetch_get_team } from '../redux/actions';
 import Month from "../monthCreathor";
 import '../App.css';
 

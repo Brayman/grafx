@@ -52,7 +52,7 @@ function NewMonth(workers, time, last) {
             return day.type
         },this.team[4].days[i].type)
     }
-    workers.reduce((acc,el,i) => {
+    workers.forEach((el,i) => {
         this.team[i].hours = this.team[i].days.reduce((acc, el, index, arr) => {
             return acc + el.hours
         },0)

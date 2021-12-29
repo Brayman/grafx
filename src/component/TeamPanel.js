@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { MdDone, MdClear } from "react-icons/md";
 function WorkerInput({add, cancel}) {
     const [name, setName] = useState({first_name: ''})
@@ -19,7 +19,7 @@ function Team({team, users, saveTeam, updateTeam}) {
     })
     function filter(el, i ,arr) {
         console.log(el, this);
-        if (el.first_name == this.target) {
+        if (el.first_name === this.target) {
             console.log(el);
             setWorkers([...workers,el])
         }
@@ -29,7 +29,7 @@ function Team({team, users, saveTeam, updateTeam}) {
     }
     function delete_item(name) {
         let arr =[];
-        workers.map((item) => {
+        workers.forEach((item) => {
             if (item.first_name !== name) {
                 return arr = [...arr,item];
             }
