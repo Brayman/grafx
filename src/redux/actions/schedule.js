@@ -14,7 +14,11 @@ export const get_shedules = payload => ({
 export const fail_get_shedules = payload => ({
     type: 'FAIL_GET_SCHEDULES',
     payload
-  }) 
+  })
+export const get_shedule = payload => ({
+    type: 'GET_SCHEDULE',
+    payload
+})
 export const fetch_shedules = payload => async dispatch => {
         
     const res = await fetch(`${URL}/api/schedules`)

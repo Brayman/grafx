@@ -17,7 +17,7 @@ import { useSelector } from 'react-redux';
   
 
 function App({params}) {
-    const user = useSelector((state) => state.user);
+    const {user, schedules} = useSelector((state) => state);
     return (
         <div className='app'>
             <Header/>
@@ -28,6 +28,9 @@ function App({params}) {
                 </Route>
                 <Route exact path='/profile'>
                     <Profile user={user}/>
+                </Route>
+                <Route exact path='/creator/:id'>
+                    {user.role === 'admin' ? <Creator schedule={schedules}/> : <Redirect to='/'/>}
                 </Route>
                 <Route exact path='/creator'>
                     {user.role === 'admin' ? <Creator/> : <Redirect to='/'/>}

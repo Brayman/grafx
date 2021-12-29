@@ -4,10 +4,9 @@ import '../css/creator.css';
 
 import {Editor, Panel} from "../component";
 import { useDispatch, useSelector } from "react-redux";
-const worke = ['user1','user2','user3','user4','user5','user6']
 
 
-function Creator() {
+function Creator({schedule}) {
     const [selectDay, setSelectDay] = useState()
     const [newMonth, createMonth] = useState()
     const dayClick = (activeItem) => {
@@ -37,6 +36,7 @@ function Creator() {
         }
     }
     const dispatch = useDispatch()
+    useEffect(() => schedule ? createMonth(schedule) : () => null,[])
     const {previous_schedule, team} = useSelector((store) => store);
     return (
         <div>
@@ -93,7 +93,7 @@ function Creator() {
                 {
                     !newMonth ?  <Panel setDate={(e) => createMonth(e)} getPrev={(e) => dispatch(fetch_previous_shedule(e))}/>: 
                         <section  className='graf'>
-                            <Editor team={team} date={newMonth} dayClick={() => dayClick(selectDay)}/>
+                             <Editor team={team} date={newMonth} dayClick={() => dayClick(selectDay)}/>
                         </section>
                 }
             </section>
