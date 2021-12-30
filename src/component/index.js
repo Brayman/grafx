@@ -6,3 +6,4 @@ export { default as Alert} from './Alert';
 export { default as Schedule} from './Schedule';
 export { default as Editor} from './GrafEditor';
 export { default as Panel} from './CreateMonthPanel';
+export { default as Menu} from './ContextMenu';
