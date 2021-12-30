@@ -1,7 +1,8 @@
 import { useState,useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { fetch_save_shedules, fetch_get_team } from '../redux/actions';
+import { fetch_save_shedules, fetch_update_shedules, fetch_get_team } from '../redux/actions';
 import '../App.css';
+import { useHistory } from "react-router-dom";
 
 
 function Editor({ emptyMonth, date, dayClick}) {
@@ -9,6 +10,7 @@ function Editor({ emptyMonth, date, dayClick}) {
     const [month,setMonth] = useState();
     const user = useSelector((state) => state.user);
     const dispatch = useDispatch();
+    const history = useHistory();
     console.log(emptyMonth);
     useEffect(() => {
         dispatch(fetch_get_team(user.login))  
@@ -57,7 +59,14 @@ function Editor({ emptyMonth, date, dayClick}) {
             )}
             </tbody>
         </table>
-        <button onClick={() => dispatch(fetch_save_shedules(month))}>Сохранить</button>
+        {
+            !month._id ? <button onClick={() => dispatch(fetch_save_shedules(month))}>Сохранить</button> :
+            <button onClick={() => {
+                    dispatch(fetch_update_shedules(month))
+                    history.push("/")
+                }
+            }>Сохранить изменения</button>
+        }
         </div>
     )
 }

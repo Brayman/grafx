@@ -37,13 +37,25 @@ export const fetch_save_shedules = payload => async dispatch => {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify(payload)
-        })
-        const ans = await res.json()
-        console.log(ans);
+        });
+}
+export const fetch_update_shedules = payload => async dispatch => {  
+    const res = await fetch(`${URL}/api/schedule/${payload._id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+          },
+        body: JSON.stringify(payload)
+    })
+    const ans = await res.json();
+    if (res.status >= 400) {
+        dispatch(fail_get_shedules);
+    } else {
+        dispatch(get_shedules(ans));
+    } 
 }
 export const fetch_previous_shedule = payload => async dispatch => {  
     const res = await fetch(`${URL}/api/schedule/${payload}`)
-        const ans = await res.json()
-        console.log(ans);
-        dispatch(get_prev_schedule(ans))
+    const ans = await res.json();
+    dispatch(get_prev_schedule(ans));
 }
