@@ -1,13 +1,10 @@
 import React from 'react';
 import '../App.css';
 import '../css/basic.css';
-import Creator from './Creator';
-
-import Graf from '../Graf';
+import {Creator, Main} from './index';
 import pack from '../../package.json'
 import { Header, Profile } from '../component';
 import LoginWindow from './LoginWindow';
-import Main from './Main';
 import {
     Switch,
     Route,
@@ -16,13 +13,12 @@ import {
 import { useSelector } from 'react-redux';
   
 
-function App({params}) {
+function App() {
     const user = useSelector((state) => state.user);
     return (
         <div className='app'>
             <Header/>
             <Switch>
-                
                 <Route exact path='/'>
                     <Main/>
                 </Route>

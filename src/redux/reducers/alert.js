@@ -1,5 +1,11 @@
 const Alert = (state = {}, {type, payload}) => {
     switch (type) {
+        case 'LOGIN': {
+            return {
+                type: 'done',
+                message: 'Вы вошли'
+            }
+        }
         case 'LOGIN_FAIL':
             return {
                 type: 'error',

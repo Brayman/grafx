@@ -23,3 +23,18 @@ button.error:hover {
     background-color: #f44336;
     color: #efefef8f;
 }
+section.done {
+    background-color: #92d0503b;
+    border-color: #92d050;
+    flex-direction: row;
+    align-items: center;
+}
+button.done {
+    position: relative;
+    width: 2em;
+    height: 2em;
+    padding: 0.5em;
+    border-radius: 0.3em;
+    right: 0px;
+    background-color: #92d0503b;
+}
