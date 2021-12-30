@@ -2,8 +2,6 @@ import React from 'react';
 import '../App.css';
 import '../css/basic.css';
 import Creator from './Creator';
-
-import Graf from '../Graf';
 import pack from '../../package.json'
 import { Header, Profile } from '../component';
 import LoginWindow from './LoginWindow';
@@ -16,8 +14,8 @@ import {
 import { useSelector } from 'react-redux';
   
 
-function App({params}) {
-    const user = useSelector((state) => state.user);
+function App() {
+    const {user, schedules} = useSelector((state) => state);
     return (
         <div className='app'>
             <Header/>
@@ -28,6 +26,9 @@ function App({params}) {
                 </Route>
                 <Route exact path='/profile'>
                     <Profile user={user}/>
+                </Route>
+                <Route exact path='/creator/:id'>
+                    {user.role === 'admin' ? <Creator schedule={schedules}/> : <Redirect to='/'/>}
                 </Route>
                 <Route exact path='/creator'>
                     {user.role === 'admin' ? <Creator/> : <Redirect to='/'/>}

@@ -31,6 +31,7 @@ router.post('/login', UserController.login);
 router.post('/logout', UserController.logout);
 router.get('/schedules', ScheduleController.get_schedules);
 router.get('/schedule/:date', ScheduleController.get_schedule);
+router.put('/schedule/:id', ScheduleController.update_schedule);
 router.get('/refresh', UserController.refresh);
 router.get('/users', UserController.getUser);
 router.get('/team/:login', TeamController.get_team);

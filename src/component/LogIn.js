@@ -2,8 +2,8 @@ import { useState } from "react";
 import { MdPerson, MdLockOutline } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { Alert } from "./index";
-import { fetch_login, login } from "../redux/actions";
-function Login(params) {
+import { fetch_login} from "../redux/actions";
+function Login() {
     const [form,setForm] = useState({})
     const alert = useSelector((state) => state.alert);
     const dispatch = useDispatch()

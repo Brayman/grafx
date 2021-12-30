@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { FaTelegram } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import {
     fetch_logout,
-    fetch_get_team,
     fetch_get_users,
     fetch_save_team,
     fetch_update_team
@@ -15,9 +14,8 @@ function Profile() {
     const dispatch = useDispatch();
     const {user, users, team} = useSelector((state) => state)
     useEffect(() => {
-        dispatch(fetch_get_team(user.login))
         dispatch(fetch_get_users())
-    },[])
+    },[dispatch])
     if (user.login) {
         return (
             <section>

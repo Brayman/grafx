@@ -1,9 +1,9 @@
-export default (state = {}, {type, payload}) => {
+const previous_schedule = (state = {}, {type, payload}) => {
     switch (type) {
         case 'GET_PREVIOUS_SCHEDULE':
-            console.log('gg');
             return payload;
         default:
             return state;
     }
 }
+export default previous_schedule;

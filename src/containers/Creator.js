@@ -1,17 +1,14 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { fetch_previous_shedule } from "../redux/actions"
 import '../css/creator.css';
-
 import {Editor, Panel} from "../component";
 import { useDispatch, useSelector } from "react-redux";
-const worke = ['user1','user2','user3','user4','user5','user6']
+import Month from "../monthCreathor";
 
-
-function Creator(params) {
-    const [workers, setWorkers] = useState([])
-    
-    const [selectDay, setSelectDay] = useState()
-    const [newMonth, createMonth] = useState()
+function Creator({schedule}) {
+    const [selectDay, setSelectDay] = useState();
+    const [newMonth, createMonth] = useState();
+    const [date, setDate] = useState(0);
     const dayClick = (activeItem) => {
         switch (activeItem) {
             case 'work-day':
@@ -39,24 +36,10 @@ function Creator(params) {
         }
     }
     const dispatch = useDispatch()
-    const prev_schedule = useSelector((store) => store.previous_schedule)
-    console.log(prev_schedule);
+    useEffect(() => schedule ? createMonth(schedule) : () => null,[])
+    const {previous_schedule, team} = useSelector((store) => store);
     return (
         <div>
-
-            
-            {/* <div>
-                <input type='month'/>
-                <select onChange={(e) => { console.log(e.target.value); setWorkers([...workers,e.target.value])}}>
-                    {worke.map((item, i, arr) => {
-                        return <option>{item}</option>
-                    })}
-                </select>
-                <div>
-                    {workers.map((item, i, arr) => {return <div>{item}</div>})}
-                </div>
-                <button>Выбрать</button>
-            </div> */}
             <div>
                 <button className={'work-day' === selectDay ? 'active work-day' : 'work-day'}
                         onClick={(e) => setSelectDay(e.target.className)}
@@ -80,21 +63,20 @@ function Creator(params) {
                 </button>
             </div>
             <section className="schedule">
-                { prev_schedule.team ? <section className="previous">
+                { previous_schedule.team ? <section className="previous">
                     <table>
                         <tbody>
                             <tr>
                                 <td>
-                                    {prev_schedule.team[0].days.length-1}
+                                    {previous_schedule.team[0].days.length-1}
                                 </td>
                                 <td>
-                                    {prev_schedule.team[0].days.length}
+                                    {previous_schedule.team[0].days.length}
                                 </td>
                             </tr>
-                            {prev_schedule.team.map((item, i) => {
-                                console.log(item.days[item.days.length-2]);
+                            {previous_schedule.team.map((item, i) => {
                                 return (
-                                    <tr>
+                                    <tr key={i}>
                                         <td className={item.days[item.days.length-2].type}>
                                             {item.days[item.days.length-2].hours}
                                         </td>
@@ -109,9 +91,9 @@ function Creator(params) {
                     </table>
                 </section> : null}
                 {
-                    !newMonth ?  <Panel setDate={(e) => createMonth(e)} getPrev={(e) => dispatch(fetch_previous_shedule(e))}/>: 
+                    !newMonth ?  <Panel setDate={(e) => createMonth(new Month(team, e))} getPrev={(e) => dispatch(fetch_previous_shedule(e))}/>: 
                         <section  className='graf'>
-                            <Editor team={worke} date={newMonth} dayClick={() => dayClick(selectDay)}/>
+                             <Editor emptyMonth={newMonth} date={date} dayClick={() => dayClick(selectDay)}/>
                         </section>
                 }
             </section>

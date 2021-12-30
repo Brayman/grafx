@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import Month from './monthCreathor';
-import {Menu} from './component';
 import './App.css';
 const workers = ['user1','user2','user3','user4','user5','user6']
 

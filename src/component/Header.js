@@ -2,7 +2,7 @@ import  '../css/header-footer.css';
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { fetch_refresh_sesion } from "../redux/actions";
+import { fetch_refresh_sesion, fetch_get_team } from "../redux/actions";
 
 
 function Header() {
@@ -11,8 +11,11 @@ function Header() {
     let history = useHistory();
     const date = new Date()
     useEffect(() => {
-        dispatch(fetch_refresh_sesion());        
+        dispatch(fetch_refresh_sesion());  
     },[]);
+    useEffect(() => {
+        user.login ? dispatch(fetch_get_team(user.login)) : console.log("wait");       
+    },[user]);
     return (
         <header>
             <div onClick={()=>history.push('/')}>

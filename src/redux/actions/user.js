@@ -65,7 +65,7 @@ export const fetch_refresh_sesion = (form) => async dispatch => {
     const res = await fetch(`${URL}/api/refresh`,{
       credentials: 'include'
     })
-    if (res.status == 400) {
+    if (res.status === 400) {
       dispatch({type: 'LOGIN_ERROR'});
     } else {
       const ans = await res.json()

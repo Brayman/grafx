@@ -65,10 +65,3 @@ section.schedule {
 .previous {
     justify-content: start;
 }
-td {
-    height: 25px;
-}
-td:hover {
-    border: solid 1px #66b1e7f7;
-    box-shadow: 0px 0px 4px 2px #66b1e7f7;
-}
