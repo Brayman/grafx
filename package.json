@@ -1,6 +1,6 @@
 {
   "name": "grafx",
-  "version": "0.18.0",
+  "version": "0.18.1",
   "author": "Artem Rakitskiy",
   "private": true,
   "dependencies": {
@@ -21,11 +21,11 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "start-client": "react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build && (cd server && yarn install)",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "start": "cd server && yarn start"
+    "start-serv": "cd server && heroku local dev"
   },
   "eslintConfig": {
     "extends": [

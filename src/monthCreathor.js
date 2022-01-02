@@ -43,7 +43,6 @@ function NewMonth(workers, time, last) {
         ]
         return day.type
     },last)
-    console.log(this);
     const day = new Date(date.getFullYear(),date.getMonth()+1,0).getDate()-1
     for (let i = 0; i < day; i++) {
         workers.reduce((acc,el,i) => {
@@ -53,9 +52,7 @@ function NewMonth(workers, time, last) {
         },this.team[4].days[i].type)
     }
     workers.forEach((el,i) => {
-        this.team[i].hours = this.team[i].days.reduce((acc, el, index, arr) => {
-            return acc + el.hours
-        },0)
+        this.team[i].hours = this.team[i].days.reduce((acc, el, index, arr) => acc + el.hours,0)
     
     },0);
 }

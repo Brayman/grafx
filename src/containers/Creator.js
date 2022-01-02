@@ -8,7 +8,6 @@ import Month from "../monthCreathor";
 function Creator({schedule}) {
     const [selectDay, setSelectDay] = useState();
     const [newMonth, createMonth] = useState();
-    const [date, setDate] = useState(0);
     const dayClick = (activeItem) => {
         switch (activeItem) {
             case 'work-day':
@@ -93,7 +92,7 @@ function Creator({schedule}) {
                 {
                     !newMonth ?  <Panel setDate={(e) => createMonth(new Month(team, e))} getPrev={(e) => dispatch(fetch_previous_shedule(e))}/>: 
                         <section  className='graf'>
-                             <Editor emptyMonth={newMonth} date={date} dayClick={() => dayClick(selectDay)}/>
+                             <Editor emptyMonth={newMonth} date={newMonth.date} dayClick={() => dayClick(selectDay)}/>
                         </section>
                 }
             </section>
