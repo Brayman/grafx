@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { MdCreate } from "react-icons/md";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { get_shedule } from "../redux/actions"
 import '../css/schedule.css'
 import { useHistory } from "react-router-dom";
@@ -9,6 +9,7 @@ function Schedule({schedule}) {
     const [open,setOpen] = useState(false);
     const nowDate = new Date();
     const data = new Date(schedule.date);
+    const user = useSelector((state) => state.user);
     const dispatch = useDispatch();
     const history = useHistory()
     useEffect(()=> {
@@ -32,9 +33,10 @@ function Schedule({schedule}) {
                             {data.toLocaleDateString('ru-ru', {month: 'long'})}
                         </td>
                         {schedule.team[0].days.map(drawday)}
-                        <td className="button" onClick={()=> {history.push(`/creator/${schedule._id}`);dispatch(get_shedule(schedule))}}>
-                            <MdCreate/>
-                        </td>
+                        {user.type !== "admin" ? 
+                            <td className="button" onClick={()=> {history.push(`/creator/${schedule._id}`);dispatch(get_shedule(schedule))}}>
+                                <MdCreate/>
+                            </td> : null}
                     </tr>
                         {schedule.team.map((user, row) => {
                             return (
